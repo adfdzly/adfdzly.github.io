@@ -8,7 +8,7 @@
 	/* ----- OPTIONAL: paste your Formspree endpoint here -----
 	   e.g. "https://formspree.io/f/abcdwxyz"
 	   Leave "" to use the mailto fallback (works out of the box). */
-	var FORMSPREE_ENDPOINT = "https://formspree.io/f/xeewggby";
+	var FORMSPREE_ENDPOINT = "https://formspree.io/f/xbdeoyrk";
 	var CONTACT_EMAIL = "mafadzly@gmail.com";
 
 	// Respect OS reduced-motion, or an explicit ?fx=off escape hatch (shows
