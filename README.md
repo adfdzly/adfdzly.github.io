@@ -19,7 +19,7 @@ index.html              # the whole page
 assets/css/style.css    # terminal theme + animations (CSS variables for theming)
 assets/js/app.js         # boot, typing, reveals, theme, canvas, contact form
 assets/css/fontawesome-all.min.css + assets/webfonts/   # icons
-images/Profile.jpg, UITM.jpg                            # photos
+images/Me.jpg, UITM.jpg                            # photos
 ```
 
 ## Two manual steps
