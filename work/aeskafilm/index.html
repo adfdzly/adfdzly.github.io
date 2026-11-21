@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>AeskaFilm case study · Adrie Fadzly</title>
+	<meta name="description" content="How a QR card on a table becomes a shared event camera: browser capture with no app, a fixed roll, and photos that develop overnight into a book." />
+	<meta name="theme-color" content="#090a0b" />
+	<link rel="canonical" href="https://adfdzly.github.io/work/aeskafilm/" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="AeskaFilm: a disposable camera on every table" />
+	<meta property="og:description" content="Case study by Adrie Fadzly. QR table cameras in the browser that develop overnight into a scrapbook." />
+	<meta property="og:url" content="https://adfdzly.github.io/work/aeskafilm/" />
+	<meta property="og:image" content="https://adfdzly.github.io/images/og/aeskafilm.png" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" />
+	<link rel="stylesheet" href="/assets/css/site.css" />
+	<script>(function(){var d=document.documentElement,m;try{m=localStorage.getItem("af-motion")}catch(e){}if(m!=="on"&&m!=="off")m=matchMedia("(prefers-reduced-motion: reduce)").matches?"off":"on";d.dataset.motion=m})();</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+	<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
+	<script src="/assets/js/motion.js" defer></script>
+	<script src="/assets/js/site.js" defer></script>
+</head>
+<body>
+	<a class="skip" href="#main">Skip to content</a>
+	<header class="nav">
+		<div class="wrap nav__in">
+			<a class="nav__brand" href="/">Adrie Fadzly<span class="hide-sm">AESKA Lab</span></a>
+			<nav class="nav__links" aria-label="Primary">
+				<a href="/work/" aria-current="page">Work</a>
+				<a class="hide-sm" href="/#about">About</a>
+				<a class="hide-sm" href="/#contact">Contact</a>
+				<span class="nav__sep" aria-hidden="true"></span>
+				<button class="motion-btn hide-sm" type="button" aria-pressed="true"><i aria-hidden="true"></i>Motion</button>
+				<button class="nav__menu-btn" type="button" aria-expanded="false" aria-controls="sheet">Menu</button>
+			</nav>
+		</div>
+		<div class="nav__sheet" id="sheet">
+			<a href="/work/">Work</a><a href="/#about">About</a><a href="/#contact">Contact</a>
+			<a href="/assets/Resume-Adrie-Fadzly.pdf">Résumé (PDF)</a>
+			<button class="motion-btn" type="button" aria-pressed="true"><i aria-hidden="true"></i>Motion</button>
+		</div>
+	</header>
+
+	<main id="main">
+		<header class="case-head wrap">
+			<p class="label"><a class="link" href="/work/"><span class="arr" aria-hidden="true">←</span> Work</a> · 02</p>
+			<h1 data-split data-split-now>AeskaFilm</h1>
+			<p class="serif">A disposable camera on every table.</p>
+			<dl class="facts">
+				<div><dt>Role</dt><dd>Founder &amp; engineer</dd></div>
+				<div><dt>Team</dt><dd>AESKA Lab Solution</dd></div>
+				<div><dt>Year</dt><dd>2026</dd></div>
+				<div><dt>Stage</dt><dd>Commercial product</dd></div>
+			</dl>
+		</header>
+
+		<div class="wrap">
+			<div class="cover cover--film grain vt-film" style="padding:clamp(18px,3vw,40px)">
+				<ol class="sheet" aria-hidden="true">
+					<li class="frame"><div class="frame__img ph-1"></div><p class="frame__n"><b>Capture</b><span>01</span></p></li>
+					<li class="frame"><div class="frame__img ph-3"></div><p class="frame__n"><span>Capture</span><span>02</span></p></li>
+					<li class="frame"><div class="frame__img ph-5"></div><p class="frame__n"><span>Capture</span><span>03</span></p></li>
+					<li class="frame"><div class="frame__img ph-6"></div><p class="frame__n"><span>Capture</span><span>04</span></p></li>
+				</ol>
+			</div>
+			<p class="note" style="margin-top:14px">Frames are illustrations, not guest photos.</p>
+		</div>
+
+		<section class="prose wrap" aria-labelledby="s1">
+			<div class="grid">
+				<p class="prose__side label">Summary</p>
+				<div class="prose__main">
+					<h2 id="s1" data-split>The photos that matter are on <em>guests' phones</em></h2>
+					<p>At a wedding or graduation, the best candid photos are taken by guests and mostly never reach the couple. Shared albums need an app, an account, or someone chasing links the week after.</p>
+					<p>AeskaFilm puts a QR card on every table. Guests scan it, give their name, and get a roll of shots in their phone's browser. They don't install anything, they can't retake a shot, and nobody sees the photos until the reveal. The roll develops into a scrapbook-style book that opens the next morning, or live if the client prefers.</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="prose wrap rule-top" aria-labelledby="s2">
+			<p class="label" style="margin-bottom:12px">From card to book</p>
+			<h2 id="s2" data-split>Scan, capture, <em>reveal</em></h2>
+
+			<div class="strip" id="strip">
+				<span class="perfs perfs--t" aria-hidden="true"></span><span class="perfs perfs--b" aria-hidden="true"></span>
+				<div class="strip__track">
+					<section class="strip__stop" aria-label="Scan">
+						<div class="strip__screen" aria-hidden="true">
+							<div style="position:absolute;inset:40px 10% 40px;display:grid;place-items:center;background:radial-gradient(60% 60% at 50% 40%,#5a3a24,#1d140e);border-radius:10px">
+								<div class="qr-card" style="width:min(300px,86%)">
+									<svg viewBox="0 0 21 21" shape-rendering="crispEdges"><path fill="#2a2522" d="M0 0h7v7H0zM1 1v5h5V1zM2 2h3v3H2zM14 0h7v7h-7zM15 1v5h5V1zM16 2h3v3h-3zM0 14h7v7H0zM1 15v5h5v-5zM2 16h3v3H2zM9 0h2v2H9zM9 3h1v3H9zM11 4h2v1h-2zM8 8h2v1H8zM11 8h3v2h-3zM15 9h2v1h-2zM18 8h3v1h-3zM9 10h1v2H9zM12 11h1v3h-1zM14 12h3v1h-3zM19 11h2v3h-2zM9 14h2v2H9zM14 15h2v2h-2zM17 15h1v4h-1zM10 17h3v1h-3zM19 17h2v1h-2zM9 19h2v2H9zM13 19h2v2h-2zM19 19h2v2h-2zM0 8h2v1H0zM3 9h3v2H3zM0 11h1v2H0zM8 5h1v1H8z" /></svg>
+									<p>Scan to shoot<small>Table 7</small></p>
+								</div>
+							</div>
+						</div>
+						<div class="strip__note">
+							<p class="label" style="color:#c9a77c">Stop 1 · Scan</p>
+							<h3>A card on every table</h3>
+							<p>Each table gets its own QR card, printable from the client's book. Scanning opens the camera page directly. The only thing a guest types is their name, so their shots are credited in the book.</p>
+						</div>
+					</section>
+
+					<section class="strip__stop" aria-label="Capture">
+						<div class="strip__screen" aria-hidden="true">
+							<div class="phone">
+								<div class="viewfinder"><div class="ph ph-1"></div>
+									<span class="roll">7 left</span>
+									<div class="hud"><span class="shutter"></span></div>
+								</div>
+							</div>
+						</div>
+						<div class="strip__note">
+							<p class="label" style="color:#c9a77c">Stop 2 · Capture</p>
+							<h3>A fixed roll, and no preview</h3>
+							<p>The camera runs in the browser, so there's nothing to install. Each guest gets a set number of shots and can't review or retake them. That keeps people looking at the room instead of their screen, and keeps the book from filling with ten copies of one pose.</p>
+						</div>
+					</section>
+
+					<section class="strip__stop" aria-label="Reveal">
+						<div class="strip__screen" aria-hidden="true">
+							<div class="phone" style="background:#f3ece0;color:#2a2522;padding-top:56px">
+								<p style="font:400 24px/1.1 var(--serif);font-style:italic">Aina &amp; Hakim</p>
+								<p style="font:500 10px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:#7a6f66;margin-top:4px">Developed this morning</p>
+								<div class="gal"><i class="ph-1"></i><i class="ph-2"></i><i class="ph-3"></i><i class="ph-4"></i><i class="ph-5"></i><i class="ph-6"></i><i class="ph-2"></i><i class="ph-4"></i><i class="ph-1"></i></div>
+							</div>
+						</div>
+						<div class="strip__note">
+							<p class="label" style="color:#c9a77c">Stop 3 · Reveal</p>
+							<h3>The roll develops overnight</h3>
+							<p>Nobody sees anything until the reveal. Then the couple or graduate opens a book with gallery, moments and guest pages, and can print keepsake designs. The client chooses a surprise next morning or a same-day reveal.</p>
+						</div>
+					</section>
+				</div>
+			</div>
+			<div class="strip__ctl" data-strip-ctl="strip">
+				<div class="seg" role="group" aria-label="Stops">
+					<button type="button" data-go aria-current="step">Scan</button>
+					<button type="button" data-go>Capture</button>
+					<button type="button" data-go>Reveal</button>
+				</div>
+				<div style="display:flex;gap:8px">
+					<button class="copy-btn" type="button" data-prev aria-label="Previous stop">←</button>
+					<button class="copy-btn" type="button" data-next aria-label="Next stop">→</button>
+				</div>
+			</div>
+		</section>
+
+		<section class="prose wrap rule-top" aria-labelledby="s3">
+			<div class="grid">
+				<p class="prose__side label">What I did</p>
+				<div class="prose__main">
+					<h2 id="s3" data-split>Who uses it</h2>
+					<ul class="dash">
+						<li><b>Studio admins</b> create a book per event, set package limits (shots per guest, guest cap, table codes, total photo cap), configure the camera, gallery, reveal and projector wall, moderate and export.</li>
+						<li><b>Clients</b>, the couple or graduate, get a password-protected book with gallery, moments and guests, generate their own table QR cards, and flip the reveal switch.</li>
+						<li><b>Guests</b> only ever see a camera while capture is open, and the public gallery after the reveal.</li>
+					</ul>
+					<p>Built with Next.js on Cloudflare Workers, Neon Postgres, and R2 for photo storage. Locally it runs against Postgres and an S3-compatible store in Docker, and the deploy refuses to run while local env files are present.</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="prose wrap rule-top" aria-labelledby="s4">
+			<div class="grid">
+				<p class="prose__side label">Evidence</p>
+				<div class="prose__main">
+					<h2 id="s4" data-split>See more</h2>
+					<p>AeskaFilm is a commercial product of AESKA Lab Solution. The source is private; the showcase repository has screens and an overview.</p>
+					<a class="link link--ice" href="https://github.com/adfdzly/aeskafilm-showcase" rel="noopener">AeskaFilm showcase on GitHub <span class="arr arr--r" aria-hidden="true">↗</span></a>
+				</div>
+			</div>
+		</section>
+
+		<a class="next wrap" href="/work/pricepulse/">
+			<span class="label">Next · 03</span>
+			<b data-split>PricePulse <span class="arr" aria-hidden="true">→</span></b>
+		</a>
+	</main>
+
+	<footer class="foot">
+		<div class="wrap">
+			<p class="label">© 2026 Adrie Fadzly · Johor Bahru, Malaysia</p>
+			<button class="motion-btn" type="button" aria-pressed="true"><i aria-hidden="true"></i>Motion</button>
+		</div>
+	</footer>
+</body>
+</html>

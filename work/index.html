@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Work · Adrie Fadzly</title>
+	<meta name="description" content="Selected work by Adrie Fadzly: Wedd, AeskaFilm, PricePulse, SM Agent and more." />
+	<meta name="theme-color" content="#090a0b" />
+	<link rel="canonical" href="https://adfdzly.github.io/work/" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Work · Adrie Fadzly" />
+	<meta property="og:description" content="Wedd, AeskaFilm, PricePulse, SM Agent and more." />
+	<meta property="og:url" content="https://adfdzly.github.io/work/" />
+	<meta property="og:image" content="https://adfdzly.github.io/images/og/home.png" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" />
+	<link rel="stylesheet" href="/assets/css/site.css" />
+	<script>(function(){var d=document.documentElement,m;try{m=localStorage.getItem("af-motion")}catch(e){}if(m!=="on"&&m!=="off")m=matchMedia("(prefers-reduced-motion: reduce)").matches?"off":"on";d.dataset.motion=m})();</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+	<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
+	<script src="/assets/js/motion.js" defer></script>
+	<script src="/assets/js/site.js" defer></script>
+	<style>
+		.wrow { display: grid; gap: 24px; padding-block: clamp(32px, 4vw, 56px); border-top: 1px solid var(--rule); text-decoration: none; }
+		@media (min-width: 900px) { .wrow { grid-template-columns: 4fr 8fr; gap: var(--col-gap); align-items: center; } }
+		.wrow h2 { font: 500 clamp(36px, 4.4vw, 68px)/1 var(--sans); letter-spacing: -0.035em; margin: 10px 0 14px; transition: color 160ms ease; }
+		.wrow p { color: var(--steel); max-width: 40ch; }
+		.wrow .cover { aspect-ratio: 16 / 7; min-height: 0; }
+		.wrow .pp-thumb { background: var(--graphite); padding: 6% 4% 2%; display: grid; align-items: end; }
+		.wrow .pp-thumb img { border-radius: 6px 6px 0 0; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+		@media (hover: hover) and (pointer: fine) { .wrow:hover h2 { color: var(--ice); } }
+	</style>
+</head>
+<body>
+	<a class="skip" href="#main">Skip to content</a>
+	<header class="nav">
+		<div class="wrap nav__in">
+			<a class="nav__brand" href="/">Adrie Fadzly<span class="hide-sm">AESKA Lab</span></a>
+			<nav class="nav__links" aria-label="Primary">
+				<a href="/work/" aria-current="page">Work</a>
+				<a class="hide-sm" href="/#about">About</a>
+				<a class="hide-sm" href="/#contact">Contact</a>
+				<span class="nav__sep" aria-hidden="true"></span>
+				<button class="motion-btn hide-sm" type="button" aria-pressed="true"><i aria-hidden="true"></i>Motion</button>
+				<button class="nav__menu-btn" type="button" aria-expanded="false" aria-controls="sheet">Menu</button>
+			</nav>
+		</div>
+		<div class="nav__sheet" id="sheet">
+			<a href="/work/">Work</a><a href="/#about">About</a><a href="/#contact">Contact</a>
+			<a href="/assets/Resume-Adrie-Fadzly.pdf">Résumé (PDF)</a>
+			<button class="motion-btn" type="button" aria-pressed="true"><i aria-hidden="true"></i>Motion</button>
+		</div>
+	</header>
+
+	<main id="main">
+		<header class="case-head wrap">
+			<p class="label">Selected work</p>
+			<h1 data-split data-split-now>Work</h1>
+			<p class="serif">Three products I built end to end, and some smaller projects.</p>
+		</header>
+
+		<div class="wrap">
+			<a class="wrow" href="/work/wedd/">
+				<div>
+					<p class="label">01 · Lead engineer · 2026 · In development</p>
+					<h2>Wedd</h2>
+					<p>A wedding marketplace and planner for Malaysia, from finding a vendor to booking the day.</p>
+				</div>
+				<div class="cover cover--wedd grain vt-wedd" aria-hidden="true"><span class="wedd-mark">Wedd</span></div>
+			</a>
+			<a class="wrow" href="/work/aeskafilm/">
+				<div>
+					<p class="label">02 · Founder &amp; engineer · 2026 · Live product</p>
+					<h2>AeskaFilm</h2>
+					<p>A QR card on every table becomes a shared event camera that develops overnight into a book.</p>
+				</div>
+				<div class="cover cover--film grain vt-film" aria-hidden="true" style="aspect-ratio:16/7;display:grid;align-items:center">
+					<div class="sheet" style="grid-template-columns:repeat(4,1fr)">
+						<div class="frame__img ph-1"></div><div class="frame__img ph-3"></div><div class="frame__img ph-5"></div><div class="frame__img ph-6"></div>
+					</div>
+				</div>
+			</a>
+			<a class="wrow" href="/work/pricepulse/">
+				<div>
+					<p class="label">03 · Final Year Project · 2026 · Best Project Award</p>
+					<h2>PricePulse</h2>
+					<p>Weekly price histories across Lazada and Shopee, and an honest next-week prediction.</p>
+				</div>
+				<div class="cover pp-thumb vt-pp"><img src="/images/pricepulse/dashboard.webp" width="1440" height="1500" alt="" loading="lazy" decoding="async" /></div>
+			</a>
+
+			<section class="section" style="padding-top:clamp(56px,7vw,96px)" aria-labelledby="also">
+				<h2 id="also" class="label" style="margin-bottom:18px">Also built</h2>
+				<div class="index">
+					<a class="index__row" href="https://github.com/adfdzly/sm-agent-showcase" rel="noopener">
+						<h3>SM Agent</h3><span class="label">AESKA · 2026</span>
+						<p>Self-learning multi-agent system that runs the company's social media. FastAPI, PostgreSQL with pgvector, React. About 45k lines, 790 tests, in production.</p>
+						<span class="index__go link">Showcase <span class="arr arr--r" aria-hidden="true">↗</span></span>
+					</a>
+					<div class="index__row">
+						<h3>Pawn Suite QA automation</h3><span class="label">MoneyMax · 2026</span>
+						<p>Python and Playwright framework with 300+ reusable screen blocks, a Jira-linked QA dashboard, and evidence-backed verification.</p>
+						<span class="index__go label">Internal</span>
+					</div>
+					<a class="index__row" href="https://github.com/adfdzly/Employee-Leave-Management-System" rel="noopener">
+						<h3>LeaveSecure</h3><span class="label">Django · MySQL</span>
+						<p>Leave management with RBAC, rate limiting, audit logging and SQL injection protection. One docker compose up.</p>
+						<span class="index__go link">Source <span class="arr arr--r" aria-hidden="true">↗</span></span>
+					</a>
+					<div class="index__row">
+						<h3>Homelab</h3><span class="label">Proxmox · 2026</span>
+						<p>Proxmox and Ubuntu Server, 2+ VMs, 10+ Docker containers, networking and security monitoring.</p>
+						<span class="index__go label">Self-hosted</span>
+					</div>
+				</div>
+			</section>
+		</div>
+	</main>
+
+	<footer class="foot">
+		<div class="wrap">
+			<p class="label">© 2026 Adrie Fadzly · Johor Bahru, Malaysia</p>
+			<button class="motion-btn" type="button" aria-pressed="true"><i aria-hidden="true"></i>Motion</button>
+		</div>
+	</footer>
+</body>
+</html>
