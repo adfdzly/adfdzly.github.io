@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Wedd case study · Adrie Fadzly</title>
+	<meta name="description" content="Wedd is a wedding marketplace and planner for Malaysia. How booking, payment and payout states fit together so everyone can see who holds the money and why." />
+	<meta name="theme-color" content="#090a0b" />
+	<link rel="canonical" href="https://adfdzly.github.io/work/wedd/" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="Wedd: from finding a vendor to booking the day" />
+	<meta property="og:description" content="Case study by Adrie Fadzly. Booking, payment and payout states for a Malaysian wedding marketplace." />
+	<meta property="og:url" content="https://adfdzly.github.io/work/wedd/" />
+	<meta property="og:image" content="https://adfdzly.github.io/images/og/wedd.png" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" />
+	<link rel="stylesheet" href="/assets/css/site.css" />
+	<script>(function(){var d=document.documentElement,m;try{m=localStorage.getItem("af-motion")}catch(e){}if(m!=="on"&&m!=="off")m=matchMedia("(prefers-reduced-motion: reduce)").matches?"off":"on";d.dataset.motion=m})();</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+	<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
+	<script src="/assets/js/motion.js" defer></script>
+	<script src="/assets/js/site.js" defer></script>
+</head>
+<body>
+	<a class="skip" href="#main">Skip to content</a>
+	<header class="nav">
+		<div class="wrap nav__in">
+			<a class="nav__brand" href="/">Adrie Fadzly<span class="hide-sm">AESKA Lab</span></a>
+			<nav class="nav__links" aria-label="Primary">
+				<a href="/work/" aria-current="page">Work</a>
+				<a class="hide-sm" href="/#about">About</a>
+				<a class="hide-sm" href="/#contact">Contact</a>
+				<span class="nav__sep" aria-hidden="true"></span>
+				<button class="motion-btn hide-sm" type="button" aria-pressed="true"><i aria-hidden="true"></i>Motion</button>
+				<button class="nav__menu-btn" type="button" aria-expanded="false" aria-controls="sheet">Menu</button>
+			</nav>
+		</div>
+		<div class="nav__sheet" id="sheet">
+			<a href="/work/">Work</a><a href="/#about">About</a><a href="/#contact">Contact</a>
+			<a href="/assets/Resume-Adrie-Fadzly.pdf">Résumé (PDF)</a>
+			<button class="motion-btn" type="button" aria-pressed="true"><i aria-hidden="true"></i>Motion</button>
+		</div>
+	</header>
+
+	<main id="main">
+		<header class="case-head wrap">
+			<p class="label"><a class="link" href="/work/"><span class="arr" aria-hidden="true">←</span> Work</a> · 01</p>
+			<h1 data-split data-split-now>Wedd</h1>
+			<p class="serif">From finding a vendor to booking the day.</p>
+			<dl class="facts">
+				<div><dt>Role</dt><dd>Lead engineer</dd></div>
+				<div><dt>Team</dt><dd>AESKA Lab Solution</dd></div>
+				<div><dt>Year</dt><dd>2026</dd></div>
+				<div><dt>Stage</dt><dd>In development, on staging</dd></div>
+			</dl>
+		</header>
+
+		<div class="cover cover--full cover--wedd grain vt-wedd" style="aspect-ratio:21/8">
+			<span class="wedd-mark" aria-hidden="true">Wedd</span>
+			<div class="ui wedd-card" aria-hidden="true" data-depth="0.12">
+				<div class="wedd-card__row"><span class="wedd-card__date">Sat · 14 Feb 2027</span><span class="pill pill--ok"><span class="dot"></span>Confirmed</span></div>
+				<h4>Akad &amp; reception, full-day photography</h4>
+				<div class="wedd-card__lines">
+					<div class="wedd-card__row"><span>Deposit</span><span class="wedd-card__amt">RM 1,500 · paid</span></div>
+					<div class="wedd-card__row"><span class="bar bar--m"></span><span class="bar bar--s" style="width:22%"></span></div>
+				</div>
+				<div class="wedd-card__pay"><span>Vendor payout</span><span class="pill pill--hold"><span class="dot"></span>On hold until sign-off</span></div>
+			</div>
+			<span class="cover__tag">Redrawn interface, not a production screenshot</span>
+		</div>
+
+		<section class="prose wrap" aria-labelledby="s1">
+			<div class="grid">
+				<p class="prose__side label">Summary</p>
+				<div class="prose__main">
+					<h2 id="s1" data-split>A marketplace where a booking is a promise made <em>months ahead</em></h2>
+					<p>Wedd is a wedding marketplace and planner for the Malaysian market. Couples find and book vendors. Vendors run their business on it: bookings, availability, team members, packages, reviews, business verification, subscriptions, and a public Wedd Site they publish themselves. Staff moderate the marketplace from an admin console.</p>
+					<p>A couple often pays a deposit long before the day, the vendor delivers on one day, and the balance lands somewhere in between. The product has to make that stretch of time feel safe for both sides.</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="prose wrap rule-top" aria-labelledby="s2">
+			<div class="grid">
+				<p class="prose__side label">What I did</p>
+				<div class="prose__main">
+					<h2 id="s2" data-split>What I built</h2>
+					<ul class="dash">
+						<li>A NestJS 11 API with Prisma on PostgreSQL (Supabase for the database and auth), and Redis for rate limits and cross-instance socket.io broadcast.</li>
+						<li>A React vendor portal that also serves every published vendor Wedd Site, branching on the host name, plus a React admin console for staff.</li>
+						<li>Two Expo / React Native apps: one for couples, one for vendors. A shared auth package keeps sessions consistent across the vendor portal, admin console and vendor app.</li>
+						<li>A Turborepo monorepo with PR-only branching, CI that merges on green, secrets managed per environment, and a self-hosted staging server.</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<section class="prose wrap rule-top" aria-labelledby="s3">
+			<div class="grid">
+				<p class="prose__side label">A decision</p>
+				<div class="prose__main">
+					<h2 id="s3" data-split>Booking state and money state are <em>separate machines</em></h2>
+					<p>The obvious design is one status column on a booking: pending, paid, done. It breaks the first time a couple pays a deposit, then an interim payment, then disputes part of the balance. A single status can't say "confirmed, partly paid, payout held".</p>
+					<p>So Wedd keeps three tracks that move independently and are linked by events:</p>
+					<ul class="dash">
+						<li><b>The booking</b> moves from pending to confirmed, in progress and completed, or ends cancelled or refunded.</li>
+						<li><b>Each charge</b> (deposit, interim, full balance) has its own payment state, including partial refunds and disputes.</li>
+						<li><b>The vendor's payout</b> is held after payment and released only after the event and the couple's sign-off, with a review step for disputes.</li>
+					</ul>
+					<p>At each milestone, such as the vendor accepting or a payment arriving, the system stores an evidence snapshot. A refund or dispute never has to rewrite booking history to explain itself.</p>
+					<blockquote>Any screen in Wedd can tell you who is holding the money right now, and why.</blockquote>
+				</div>
+			</div>
+		</section>
+
+		<section class="prose wrap rule-top" aria-labelledby="s4">
+			<p class="label" style="margin-bottom:12px">Same booking, three screens</p>
+			<h2 id="s4" data-split>The deposit is paid. <em>The vendor accepts.</em></h2>
+			<div class="seg" role="tablist" aria-label="View the same booking as">
+				<span class="seg__thumb" aria-hidden="true"></span>
+				<button role="tab" id="tab-c" aria-controls="v-c" aria-selected="true" type="button">Couple</button>
+				<button role="tab" id="tab-v" aria-controls="v-v" aria-selected="false" type="button" tabindex="-1">Vendor</button>
+				<button role="tab" id="tab-s" aria-controls="v-s" aria-selected="false" type="button" tabindex="-1">System</button>
+			</div>
+
+			<div class="views">
+				<div role="tabpanel" id="v-c" aria-labelledby="tab-c" tabindex="0">
+					<div class="view-stage" style="background:radial-gradient(70% 80% at 50% 0%,#3a1216,#14171a)">
+						<div class="phone" aria-hidden="true">
+							<p style="font:500 12px var(--mono);color:#7a6f66;text-transform:uppercase;letter-spacing:.05em">My bookings</p>
+							<p style="font:500 20px/1.2 var(--sans);letter-spacing:-.02em;margin:6px 0 16px">Photography</p>
+							<div class="ui" style="padding:16px;border-radius:14px">
+								<div class="wedd-card__row"><span class="wedd-card__date">14 Feb 2027</span><span class="pill pill--ok"><span class="dot"></span>Confirmed</span></div>
+								<div style="display:grid;gap:10px;margin-top:14px">
+									<div class="wedd-card__row"><span>Deposit</span><b style="font-weight:500">RM 1,500 paid</b></div>
+									<div class="wedd-card__row"><span>Next payment</span><span style="color:#7a6f66">Due 14 Jan</span></div>
+								</div>
+							</div>
+							<div style="display:grid;gap:10px;margin-top:18px"><span style="display:block;height:8px;width:84%;border-radius:4px;background:rgba(42,37,34,.1)"></span><span style="display:block;height:8px;width:60%;border-radius:4px;background:rgba(42,37,34,.1)"></span></div>
+						</div>
+					</div>
+					<p class="view-note">The couple sees the confirmed date and their next payment. Payouts aren't shown, because there's nothing for them to do there.</p>
+				</div>
+
+				<div role="tabpanel" id="v-v" aria-labelledby="tab-v" tabindex="0" hidden>
+					<div class="view-stage" style="background:radial-gradient(70% 80% at 30% 0%,#2a2622,#14171a)">
+						<div class="ui portal" aria-hidden="true">
+							<div class="portal__side">
+								<b style="font:400 24px var(--serif);font-style:italic;color:#4a1418">Wedd</b>
+								<span style="font-weight:500">Bookings</span>
+								<span class="bar bar--m"></span><span class="bar bar--s"></span><span class="bar bar--m"></span>
+							</div>
+							<div class="portal__main">
+								<p style="font:500 20px var(--sans);letter-spacing:-.02em;margin-bottom:10px">Bookings</p>
+								<div class="portal__row"><span class="bar bar--m"></span><span class="bar bar--l"></span><span class="bar bar--m"></span><span class="bar bar--s"></span></div>
+								<div class="portal__row is-focus">
+									<span style="font:500 12px var(--mono)">14 FEB 2027</span>
+									<span>Full-day photography</span>
+									<span class="pill pill--hold"><span class="dot"></span>Payout on hold</span>
+									<span class="btn-ui">Accepted</span>
+								</div>
+								<div class="portal__row"><span class="bar bar--m"></span><span class="bar bar--l"></span><span class="bar bar--m"></span><span class="bar bar--s"></span></div>
+								<div class="portal__row"><span class="bar bar--m"></span><span class="bar bar--m"></span><span class="bar bar--m"></span><span class="bar bar--s"></span></div>
+							</div>
+						</div>
+					</div>
+					<p class="view-note">The vendor accepts the booking and sees the deposit is in, but held. They know exactly when it is released: after the event and the couple's sign-off.</p>
+				</div>
+
+				<div role="tabpanel" id="v-s" aria-labelledby="tab-s" tabindex="0" hidden>
+					<div class="view-stage">
+						<div class="states">
+							<div class="states__lane">
+								<p class="label">Booking</p>
+								<div class="states__track">
+									<span class="state">Pending</span><span class="state-arrow" aria-hidden="true">→</span>
+									<span class="state now">Confirmed</span><span class="state-arrow" aria-hidden="true">→</span>
+									<span class="state">In progress</span><span class="state-arrow" aria-hidden="true">→</span>
+									<span class="state">Completed</span>
+									<span class="state alt">Cancelled</span><span class="state alt">Refunded</span>
+								</div>
+							</div>
+							<div class="states__lane">
+								<p class="label">Charges</p>
+								<div class="states__track">
+									<span class="state now">Deposit · paid</span><span class="state-arrow" aria-hidden="true">→</span>
+									<span class="state">Interim · pending</span><span class="state-arrow" aria-hidden="true">→</span>
+									<span class="state">Full balance · pending</span>
+								</div>
+							</div>
+							<div class="states__lane">
+								<p class="label">Vendor payout</p>
+								<div class="states__track">
+									<span class="state now">On hold</span><span class="state-arrow" aria-hidden="true">→</span>
+									<span class="state">Release pending</span><span class="state-arrow" aria-hidden="true">→</span>
+									<span class="state">Released</span><span class="state-arrow" aria-hidden="true">→</span>
+									<span class="state">Settled</span>
+								</div>
+							</div>
+							<p class="states__trigger">Release is triggered by the event date passing and the couple's sign-off. A dispute moves completion into review and keeps the payout held.</p>
+						</div>
+					</div>
+					<p class="view-note">Underneath, three tracks sit at different points. Highlighted states are where this booking is right now. Simplified from the real schema.</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="prose wrap rule-top" aria-labelledby="s5">
+			<div class="grid">
+				<p class="prose__side label">Evidence</p>
+				<div class="prose__main">
+					<h2 id="s5" data-split>What I can share</h2>
+					<p>Wedd is in active development and not yet public, so this page uses redrawn interfaces rather than production screenshots. The state names above come from the production schema. I'm happy to walk through the system in a call.</p>
+					<a class="link link--ice" href="/#contact">Get in touch <span class="arr arr--r" aria-hidden="true">→</span></a>
+				</div>
+			</div>
+		</section>
+
+		<a class="next wrap" href="/work/aeskafilm/">
+			<span class="label">Next · 02</span>
+			<b data-split>AeskaFilm <span class="arr" aria-hidden="true">→</span></b>
+		</a>
+	</main>
+
+	<footer class="foot">
+		<div class="wrap">
+			<p class="label">© 2026 Adrie Fadzly · Johor Bahru, Malaysia</p>
+			<button class="motion-btn" type="button" aria-pressed="true"><i aria-hidden="true"></i>Motion</button>
+		</div>
+	</footer>
+</body>
+</html>

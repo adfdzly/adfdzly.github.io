@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>PricePulse case study · Adrie Fadzly</title>
+	<meta name="description" content="Turning weekly Lazada and Shopee listings into comparable price histories, and honestly evaluating up, down and stable predictions. Final Year Project, Best Project Award." />
+	<meta name="theme-color" content="#090a0b" />
+	<link rel="canonical" href="https://adfdzly.github.io/work/pricepulse/" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="PricePulse: will it be cheaper next week?" />
+	<meta property="og:description" content="Case study by Adrie Fadzly. Price tracking and next-week trend prediction across Malaysian marketplaces." />
+	<meta property="og:url" content="https://adfdzly.github.io/work/pricepulse/" />
+	<meta property="og:image" content="https://adfdzly.github.io/images/og/pricepulse.png" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" />
+	<link rel="stylesheet" href="/assets/css/site.css" />
+	<script>(function(){var d=document.documentElement,m;try{m=localStorage.getItem("af-motion")}catch(e){}if(m!=="on"&&m!=="off")m=matchMedia("(prefers-reduced-motion: reduce)").matches?"off":"on";d.dataset.motion=m})();</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+	<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
+	<script src="/assets/js/motion.js" defer></script>
+	<script src="/assets/js/site.js" defer></script>
+</head>
+<body>
+	<a class="skip" href="#main">Skip to content</a>
+	<header class="nav">
+		<div class="wrap nav__in">
+			<a class="nav__brand" href="/">Adrie Fadzly<span class="hide-sm">AESKA Lab</span></a>
+			<nav class="nav__links" aria-label="Primary">
+				<a href="/work/" aria-current="page">Work</a>
+				<a class="hide-sm" href="/#about">About</a>
+				<a class="hide-sm" href="/#contact">Contact</a>
+				<span class="nav__sep" aria-hidden="true"></span>
+				<button class="motion-btn hide-sm" type="button" aria-pressed="true"><i aria-hidden="true"></i>Motion</button>
+				<button class="nav__menu-btn" type="button" aria-expanded="false" aria-controls="sheet">Menu</button>
+			</nav>
+		</div>
+		<div class="nav__sheet" id="sheet">
+			<a href="/work/">Work</a><a href="/#about">About</a><a href="/#contact">Contact</a>
+			<a href="/assets/Resume-Adrie-Fadzly.pdf">Résumé (PDF)</a>
+			<button class="motion-btn" type="button" aria-pressed="true"><i aria-hidden="true"></i>Motion</button>
+		</div>
+	</header>
+
+	<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+		<defs><linearGradient id="ppFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a9c7f5" stop-opacity=".18" /><stop offset="1" stop-color="#a9c7f5" stop-opacity="0" /></linearGradient></defs>
+	</svg>
+
+	<main id="main">
+		<header class="case-head wrap">
+			<p class="label"><a class="link" href="/work/"><span class="arr" aria-hidden="true">←</span> Work</a> · 03</p>
+			<h1 data-split data-split-now>PricePulse</h1>
+			<p class="serif">Will it be cheaper next week?</p>
+			<dl class="facts">
+				<div><dt>Role</dt><dd>Sole developer &amp; researcher</dd></div>
+				<div><dt>Team</dt><dd>Final Year Project, UiTM Jasin</dd></div>
+				<div><dt>Year</dt><dd>2026</dd></div>
+				<div><dt>Stage</dt><dd>Complete · Best Project Award</dd></div>
+			</dl>
+		</header>
+
+		<div class="wrap">
+			<figure class="shot vt-pp" style="margin-top:0">
+				<div class="media"><img data-settle src="/images/pricepulse/product.webp" width="1440" height="1300" alt="PricePulse product page: an iPhone listed on Shopee and Lazada, the lowest price highlighted, a weekly price history chart and a predicted trend of Stable with 43% confidence." fetchpriority="high" /></div>
+				<figcaption>Product page from the public demo, running on synthetic data.</figcaption>
+			</figure>
+		</div>
+
+		<section class="prose wrap" aria-labelledby="s1">
+			<div class="grid">
+				<p class="prose__side label">Summary</p>
+				<div class="prose__main">
+					<h2 id="s1" data-split>The same phone, <em>two prices</em></h2>
+					<p>Shoppers in Malaysia often see the same phone at very different prices on Lazada and Shopee, and prices swing around sale events like 11.11 and 12.12. PricePulse collects those listings every week, matches them to one product, and answers three questions: where is it cheapest now, how has the price moved, and will it be cheaper next week?</p>
+					<p>Users can bookmark products and set a target price to get an email when it's reached. Staff have an ML panel to retrain and roll back the model. There's a React Native app too.</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="prose wrap rule-top" aria-labelledby="s2">
+			<div class="grid">
+				<p class="prose__side label">What I did</p>
+				<div class="prose__main">
+					<h2 id="s2" data-split>From listings to comparable histories</h2>
+					<ul class="dash">
+						<li>A weekly scraping pipeline (Playwright and BeautifulSoup) on Celery and Redis, writing to MySQL.</li>
+						<li>Cross-platform product matching, so a listing on each marketplace becomes one product with one price history.</li>
+						<li>Features for trend, volatility and regime: stable-zone and anomaly flags, consecutive trend weeks, trend consistency.</li>
+						<li>A Django and Django REST Framework web app, plus the mobile app, alerts and the staff ML panel.</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<section class="prose wrap rule-top" aria-labelledby="s3">
+			<p class="label" style="margin-bottom:12px">Inspect a week</p>
+			<h2 id="s3" data-split>Observed price, <em>predicted direction</em></h2>
+			<div class="inspect" data-inspect>
+				<svg class="inspect__svg" viewBox="0 0 800 300" tabindex="0" role="slider" aria-label="Week" aria-valuemin="0" aria-valuemax="12" aria-describedby="insp-help"></svg>
+				<div class="inspect__read" aria-live="polite">
+					<div><p class="label">Week</p><b data-o="week"></b></div>
+					<div><p class="label">Average price</p><b data-o="price"></b></div>
+					<div><p class="label">Predicted next week</p><b data-o="pred"></b></div>
+					<div><p class="label">What happened</p><b data-o="actual"></b></div>
+				</div>
+				<p id="insp-help" class="note" style="margin-top:18px">Move across the chart, tap, or focus it and use the arrow keys. Synthetic series for illustration: it shows the pattern from the real evaluation, where most moves are predicted as stable.</p>
+				<details class="data">
+					<summary>Show the series as a table</summary>
+					<table class="table">
+						<thead><tr><th scope="col">Week</th><th scope="col">Price (RM)</th><th scope="col">Predicted</th><th scope="col">Actual</th></tr></thead>
+						<tbody id="pp-table"></tbody>
+					</table>
+				</details>
+			</div>
+			<script type="application/json" id="pp-data">[
+				{"week":"17 Aug","price":5480,"pred":"STABLE","actual":"UP"},
+				{"week":"24 Aug","price":5600,"pred":"STABLE","actual":"UP"},
+				{"week":"31 Aug","price":5890,"pred":"STABLE","actual":"DOWN"},
+				{"week":"7 Sep","price":5580,"pred":"STABLE","actual":"STABLE"},
+				{"week":"14 Sep","price":5500,"pred":"DOWN","actual":"DOWN"},
+				{"week":"21 Sep","price":4890,"pred":"DOWN","actual":"DOWN"},
+				{"week":"28 Sep","price":4230,"pred":"UP","actual":"UP"},
+				{"week":"5 Oct","price":5110,"pred":"STABLE","actual":"DOWN"},
+				{"week":"12 Oct","price":4850,"pred":"STABLE","actual":"STABLE"},
+				{"week":"19 Oct","price":4900,"pred":"STABLE","actual":"STABLE"},
+				{"week":"26 Oct","price":4920,"pred":"STABLE","actual":"STABLE"},
+				{"week":"2 Nov","price":4950,"pred":"STABLE","actual":"STABLE"},
+				{"week":"9 Nov","price":4960,"pred":"STABLE","actual":null}
+			]</script>
+		</section>
+
+		<section class="prose wrap rule-top" aria-labelledby="s4">
+			<div class="grid">
+				<p class="prose__side label">A decision</p>
+				<div class="prose__main">
+					<h2 id="s4" data-split>Pick the metric <em>before</em> the model</h2>
+					<p>About three quarters of product-weeks are stable. A model that never predicts a move scores 76% accuracy and is useless. So I evaluated with expanding-window walk-forward splits (train on every week before <i>t</i>, predict <i>t</i>, move on) and chose on macro F1, which weighs up, down and stable equally.</p>
+					<table class="table">
+						<caption class="sr-only">Walk-forward comparison</caption>
+						<thead><tr><th scope="col">Model</th><th scope="col">Accuracy</th><th scope="col">Macro F1</th></tr></thead>
+						<tbody>
+							<tr><td>Always stable (baseline)</td><td>0.76</td><td>0.29</td></tr>
+							<tr><td>SVM</td><td>0.709</td><td>0.291</td></tr>
+							<tr><td>Random Forest, default</td><td>0.712</td><td>0.360</td></tr>
+							<tr><td>XGBoost, default</td><td>0.706</td><td>0.392</td></tr>
+							<tr class="hl"><td>PricePulse v2.0</td><td>0.677</td><td>0.432</td></tr>
+						</tbody>
+					</table>
+					<p class="note">No model beats the baseline on accuracy. PricePulse v2.0 gives up a few points of it to make a real attempt at catching up and down moves.</p>
+					<h3>Class-level performance</h3>
+					<p>The final model is a Random Forest with class-balanced bootstrap samples, shallow trees and a minimum leaf size, to resist overfitting a small dataset. SMOTE oversampling was tried and dropped. A confidence threshold turns low-confidence up or down calls into stable; it is tuned each run under a floor of 0.50 macro precision, with all three classes still predicted.</p>
+					<p>Even so, the confusion matrix shows that most real up and down weeks still get predicted as stable. That is the model's main weakness, and the next thing I would work on.</p>
+					<figure class="shot">
+						<img src="/images/pricepulse/model.webp" width="1440" height="1150" alt="Staff ML panel in the PricePulse demo: validation metrics, controls to activate, roll back, rerun or retrain a model version, and the latest run's up, down and stable split." loading="lazy" decoding="async" />
+						<figcaption>Staff ML panel: retrain and roll back model versions. Demo data.</figcaption>
+					</figure>
+				</div>
+			</div>
+		</section>
+
+		<section class="prose wrap rule-top" aria-labelledby="s5">
+			<div class="grid">
+				<p class="prose__side label">Evidence</p>
+				<div class="prose__main">
+					<h2 id="s5" data-split>Try it</h2>
+					<div class="shot-pair shot">
+						<img src="/images/pricepulse/dashboard.webp" width="1440" height="1500" alt="PricePulse dashboard with recent price movements and alerts." loading="lazy" decoding="async" />
+						<img src="/images/pricepulse/mobile-product.webp" width="700" height="1515" alt="PricePulse mobile app product screen." loading="lazy" decoding="async" />
+					</div>
+					<p>The application source, scrapers and collected data are private. The showcase has a clickable demo on synthetic data, the architecture, and the full ML write-up.</p>
+					<div class="socials">
+						<a class="link link--ice" href="https://adfdzly.github.io/PricePulse-showcase/" rel="noopener">Open the live demo <span class="arr arr--r" aria-hidden="true">↗</span></a>
+						<a class="link" href="https://github.com/adfdzly/PricePulse-showcase" rel="noopener">Showcase repository <span class="arr arr--r" aria-hidden="true">↗</span></a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<a class="next wrap" href="/work/wedd/">
+			<span class="label">Next · 01</span>
+			<b data-split>Wedd <span class="arr" aria-hidden="true">→</span></b>
+		</a>
+	</main>
+
+	<footer class="foot">
+		<div class="wrap">
+			<p class="label">© 2026 Adrie Fadzly · Johor Bahru, Malaysia</p>
+			<button class="motion-btn" type="button" aria-pressed="true"><i aria-hidden="true"></i>Motion</button>
+		</div>
+	</footer>
+</body>
+</html>
