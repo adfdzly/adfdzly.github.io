@@ -25,96 +25,52 @@
 	});
 	syncMotionButtons();
 
-	/* ---------- Nav ---------- */
-	var nav = document.querySelector(".nav");
-	var menuBtn = document.querySelector(".nav__menu-btn");
-	var sheet = document.querySelector(".nav__sheet");
-	function setMenu(open) {
-		if (!menuBtn) return;
-		menuBtn.setAttribute("aria-expanded", String(open));
-		menuBtn.textContent = open ? "Close" : "Menu";
-		sheet.classList.toggle("is-open", open);
-		document.body.classList.toggle("menu-open", open);
-		document.body.classList.remove("nav-hidden");
+	/* ---------- Local clock (Johor Bahru, MYT) ---------- */
+	var clocks = document.querySelectorAll("[data-clock]");
+	if (clocks.length) {
+		var fmt = new Intl.DateTimeFormat("en-GB", { hour: "2-digit", minute: "2-digit", timeZone: "Asia/Kuala_Lumpur" });
+		var tickClock = function () { var t = "Johor Bahru " + fmt.format(new Date()) + " MYT"; clocks.forEach(function (c) { c.textContent = t; }); };
+		tickClock();
+		setInterval(tickClock, 15000);
 	}
-	if (menuBtn) {
-		menuBtn.addEventListener("click", function () { setMenu(menuBtn.getAttribute("aria-expanded") !== "true"); });
-		sheet.addEventListener("click", function (e) { if (e.target.closest("a")) setMenu(false); });
-		document.addEventListener("keydown", function (e) {
-			if (e.key === "Escape" && menuBtn.getAttribute("aria-expanded") === "true") { setMenu(false); menuBtn.focus(); }
+
+	/* ---------- Cursor + floating work preview (fine pointer, one rAF loop) ---------- */
+	var cur = document.querySelector(".cur");
+	var pv = document.querySelector(".pv");
+	if (cur && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+		var curLabel = cur.querySelector(".cur__label");
+		var panels = pv ? pv.querySelectorAll("[data-p]") : [];
+		var lerp = function (a, b, t) { return a + (b - a) * t; };
+		var m = { x: -100, y: -100 }, c = { x: -100, y: -100 }, p = { x: -100, y: -100 }, raf = 0;
+		var loop = function () {
+			c.x = lerp(c.x, m.x, 0.35); c.y = lerp(c.y, m.y, 0.35);
+			p.x = lerp(p.x, m.x, 0.12); p.y = lerp(p.y, m.y, 0.12);
+			cur.style.transform = "translate3d(" + c.x + "px," + c.y + "px,0)";
+			if (pv) pv.style.transform = "translate3d(" + p.x + "px," + p.y + "px,0) rotate(" + ((m.x - p.x) * 0.03).toFixed(2) + "deg)";
+			raf = Math.abs(m.x - p.x) + Math.abs(m.y - p.y) > 0.3 ? requestAnimationFrame(loop) : 0;
+		};
+		window.addEventListener("pointermove", function (e) {
+			if (!motionOn()) return;
+			m.x = e.clientX; m.y = e.clientY;
+			root.classList.remove("is-hidden-cur");
+			if (!raf) raf = requestAnimationFrame(loop);
+		}, { passive: true });
+		document.addEventListener("pointerleave", function () { root.classList.add("is-hidden-cur"); });
+		document.addEventListener("pointerover", function (e) {
+			var t = e.target.closest("a, button, summary, [data-cursor]");
+			var text = t && t.getAttribute("data-cursor");
+			cur.classList.toggle("is-label", !!text);
+			cur.classList.toggle("is-link", !!t && !text);
+			curLabel.textContent = text || "";
+			var key = t && t.getAttribute("data-preview");
+			if (pv) {
+				pv.classList.toggle("is-on", !!key);
+				panels.forEach(function (n) { n.classList.toggle("is-on", n.getAttribute("data-p") === key); });
+			}
 		});
-	}
-
-	/* ---------- Fallback reveals when GSAP is unavailable (staggered groups, chart draw) ---------- */
-	var revealables = document.querySelectorAll(".stagger, .draw");
-	if ("IntersectionObserver" in window) {
-		var io = new IntersectionObserver(function (entries) {
-			entries.forEach(function (en) {
-				if (en.isIntersecting) { en.target.classList.add("is-in"); io.unobserve(en.target); }
-			});
-		}, { rootMargin: "0px 0px -12% 0px", threshold: 0.12 });
-		revealables.forEach(function (el) { io.observe(el); });
-	} else {
-		revealables.forEach(function (el) { el.classList.add("is-in"); });
-	}
-
-	/* ---------- The object: first-scroll split + pointer tilt ---------- */
-	var stage = document.querySelector(".stage");
-	if (stage) {
-		var obj = stage.querySelector(".obj");
-		var layers = stage.querySelectorAll("[data-shift]");
-		var core = stage.querySelector(".layer--core");
-		var STILL_SPLIT = 0.35; // composition used when motion is off
-		var visible = true, raf = 0;
-		var tilt = { x: 0, y: 0, tx: 0, ty: 0 };
-		var finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-
-		var applySplit = function () {
-			if (window.AF_MOTION && window.AF_MOTION.active()) return; // GSAP scrubs the split
-			var s =motionOn() ? Math.min(Math.max(window.scrollY / (window.innerHeight * 0.5), 0), 1) : STILL_SPLIT;
-			var h = stage.offsetHeight;
-			layers.forEach(function (l) {
-				l.style.transform = "translate3d(0," + (parseFloat(l.dataset.shift) * s * h).toFixed(1) + "px,0)";
-			});
-			core.style.opacity = Math.min(s * 1.6, 1).toFixed(3);
-		};
-
-		var frame = function () {
-			raf = 0;
-			applySplit();
-			if (!finePointer || !motionOn()) { obj.style.setProperty("--tx", "0deg"); obj.style.setProperty("--ty", "0deg"); return; }
-			tilt.x += (tilt.tx - tilt.x) * 0.08;
-			tilt.y += (tilt.ty - tilt.y) * 0.08;
-			obj.style.setProperty("--tx", tilt.x.toFixed(2) + "deg");
-			obj.style.setProperty("--ty", tilt.y.toFixed(2) + "deg");
-			if (visible && (Math.abs(tilt.tx - tilt.x) > 0.01 || Math.abs(tilt.ty - tilt.y) > 0.01)) schedule();
-		};
-		var schedule = function () { if (!raf) raf = requestAnimationFrame(frame); };
-
-		window.addEventListener("scroll", function () { if (visible) schedule(); }, { passive: true });
-		window.addEventListener("resize", schedule, { passive: true });
-		if (finePointer) {
-			window.addEventListener("pointermove", function (e) {
-				if (!visible || !motionOn()) return;
-				tilt.ty = (e.clientX / window.innerWidth - 0.5) * 7;
-				tilt.tx = -(e.clientY / window.innerHeight - 0.5) * 5;
-				schedule();
-			}, { passive: true });
-		}
-		if ("IntersectionObserver" in window) {
-			new IntersectionObserver(function (en) {
-				visible = en[0].isIntersecting;
-				if (visible) schedule();
-			}).observe(stage);
-		}
-		motionListeners.push(schedule);
-		applySplit();
-	}
-
-	if (nav) {
-		var onScroll = function () { nav.classList.toggle("is-scrolled", window.scrollY > 8); };
-		window.addEventListener("scroll", onScroll, { passive: true });
-		onScroll();
+		var syncCur = function () { root.classList.toggle("has-cur", motionOn()); };
+		syncCur();
+		motionListeners.push(syncCur);
 	}
 
 	/* ---------- Copy email ---------- */

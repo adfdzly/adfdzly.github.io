@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>Wedd case study · Adrie Fadzly</title>
 	<meta name="description" content="Wedd is a wedding marketplace and planner for Malaysia. How booking, payment and payout states fit together so everyone can see who holds the money and why." />
-	<meta name="theme-color" content="#090a0b" />
+	<meta name="theme-color" content="#0c0c0b" />
 	<link rel="canonical" href="https://adfdzly.github.io/work/wedd/" />
 	<meta property="og:type" content="article" />
 	<meta property="og:title" content="Wedd: from finding a vendor to booking the day" />
@@ -16,7 +16,7 @@
 	<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" />
 	<link rel="stylesheet" href="/assets/css/site.css" />
 	<script>(function(){var d=document.documentElement,m;try{m=localStorage.getItem("af-motion")}catch(e){}if(m!=="on"&&m!=="off")m=matchMedia("(prefers-reduced-motion: reduce)").matches?"off":"on";d.dataset.motion=m})();</script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
@@ -27,22 +27,18 @@
 </head>
 <body>
 	<a class="skip" href="#main">Skip to content</a>
-	<header class="nav">
-		<div class="wrap nav__in">
-			<a class="nav__brand" href="/">Adrie Fadzly<span class="hide-sm">AESKA Lab</span></a>
-			<nav class="nav__links" aria-label="Primary">
-				<a href="/work/" aria-current="page">Work</a>
-				<a class="hide-sm" href="/#about">About</a>
-				<a class="hide-sm" href="/#contact">Contact</a>
-				<span class="nav__sep" aria-hidden="true"></span>
-				<button class="motion-btn hide-sm" type="button" aria-pressed="true"><i aria-hidden="true"></i>Motion</button>
-				<button class="nav__menu-btn" type="button" aria-expanded="false" aria-controls="sheet">Menu</button>
-			</nav>
-		</div>
-		<div class="nav__sheet" id="sheet">
-			<a href="/work/">Work</a><a href="/#about">About</a><a href="/#contact">Contact</a>
-			<a href="/assets/Resume-Adrie-Fadzly.pdf">Résumé (PDF)</a>
+	<div class="cur" aria-hidden="true"><span class="cur__label"></span></div>
+
+	<header class="tb">
+		<a class="tb__brand" href="/">AF<sup>®</sup><span>Adrie Fadzly</span></a>
+		<nav class="tb__nav" aria-label="Primary">
+			<a href="/work/" aria-current="page"><i>01</i>Work</a>
+			<a href="/#about"><i>02</i>About</a>
+			<a href="/#contact"><i>03</i>Contact</a>
+		</nav>
+		<div class="tb__end">
 			<button class="motion-btn" type="button" aria-pressed="true"><i aria-hidden="true"></i>Motion</button>
+			<a class="pill pill--solid" href="/assets/Resume-Adrie-Fadzly.pdf">Résumé ↓</a>
 		</div>
 	</header>
 
@@ -226,11 +222,14 @@
 		</a>
 	</main>
 
-	<footer class="foot">
-		<div class="wrap">
-			<p class="label">© 2026 Adrie Fadzly · Johor Bahru, Malaysia</p>
+	<footer class="foot2">
+		<div class="foot2__row">
+			<p class="k">© 2026 Adrie Fadzly</p>
+			<p class="k"><span data-clock>Johor Bahru</span></p>
 			<button class="motion-btn" type="button" aria-pressed="true"><i aria-hidden="true"></i>Motion</button>
+			<a class="k" href="#main">Back to top ↑</a>
 		</div>
+		<p class="foot2__mark" aria-hidden="true">Adrie Fadzly</p>
 	</footer>
 </body>
 </html>

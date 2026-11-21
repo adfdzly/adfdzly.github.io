@@ -46,23 +46,6 @@
 		}
 
 		ctx = gsap.context(function () {
-			/* Opening: the hero is pinned (CSS sticky) while the layers part like a product film. */
-			var pin = document.querySelector(".hero-pin");
-			if (pin) {
-				var stage = pin.querySelector(".stage");
-				var h = function () { return stage.offsetHeight; };
-				var tl = gsap.timeline({
-					defaults: { ease: "none" },
-					scrollTrigger: { trigger: pin, start: "top top", end: "bottom bottom", scrub: 1, invalidateOnRefresh: true }
-				});
-				pin.querySelectorAll("[data-shift]").forEach(function (l) {
-					tl.fromTo(l, { y: 0 }, { y: function () { return parseFloat(l.dataset.shift) * h(); } }, 0);
-				});
-				tl.fromTo(".layer--core", { opacity: 0 }, { opacity: 1, duration: 0.55 }, 0)
-					.fromTo(".obj__turn", { rotation: 0, y: 0 }, { rotation: -4, y: function () { return -0.12 * h(); } }, 0)
-					.fromTo(".hero__text", { y: 0, opacity: 1 }, { y: -60, opacity: 0.25 }, 0.35);
-			}
-
 			/* Headlines rise line by line, once. */
 			gsap.utils.toArray("[data-split]").forEach(function (el) {
 				var words = split(el);
@@ -73,13 +56,6 @@
 				});
 			});
 
-			/* Covers open from a framed card to full bleed, contents drift at their own depth. */
-			gsap.utils.toArray("[data-open]").forEach(function (el) {
-				gsap.fromTo(el, { scale: 0.88, borderRadius: 24 }, {
-					scale: 1, borderRadius: 0, ease: "none",
-					scrollTrigger: { trigger: el, start: "top bottom", end: "top 25%", scrub: 1 }
-				});
-			});
 			gsap.utils.toArray("[data-depth]").forEach(function (el) {
 				var d = parseFloat(el.dataset.depth);
 				gsap.fromTo(el, { yPercent: d * 100 }, {
@@ -88,30 +64,19 @@
 				});
 			});
 
-			/* Film frames develop one after another, top edge first. */
-			gsap.utils.toArray(".sheet[data-develop]").forEach(function (sheet) {
-				sheet.classList.remove("stagger");
-				gsap.fromTo(sheet.children, { clipPath: "inset(0 0 100% 0)", y: 24 }, {
-					clipPath: "inset(0 0 0% 0)", y: 0, duration: 1, ease: EXPO, stagger: 0.08,
-					scrollTrigger: { trigger: sheet, start: "top 80%", once: true }
+			/* Work titles slide in from alternating sides. */
+			gsap.utils.toArray(".row__t").forEach(function (t, i) {
+				gsap.fromTo(t, { xPercent: i % 2 ? 8 : -8 }, {
+					xPercent: 0, ease: "none",
+					scrollTrigger: { trigger: t, start: "top bottom", end: "top 55%", scrub: 0.8 }
 				});
 			});
 
-			/* PricePulse: the line draws with the scroll, like a chart being plotted. */
-			gsap.utils.toArray(".draw").forEach(function (fig) {
-				fig.classList.remove("draw");
-				var line = fig.querySelector(".pp-line");
-				var tl2 = gsap.timeline({ scrollTrigger: { trigger: fig, start: "top 85%", end: "bottom 55%", scrub: 1 } });
-				tl2.fromTo(line, { strokeDasharray: 1, strokeDashoffset: 1 }, { strokeDashoffset: 0, ease: "none", duration: 1 }, 0)
-					.fromTo(fig.querySelectorAll(".pp-area"), { opacity: 0 }, { opacity: 1, duration: 0.4 }, 0.5)
-					.fromTo(fig.querySelectorAll(".pp-pred, .pp-end"), { opacity: 0 }, { opacity: 1, duration: 0.15 }, 0.85);
-			});
-
-			/* About: the ivory page slides up and widens to full bleed. */
-			gsap.utils.toArray("[data-sheet]").forEach(function (el) {
-				gsap.fromTo(el, { clipPath: "inset(0% 4% 0% 4% round 28px)" }, {
-					clipPath: "inset(0% 0% 0% 0% round 0px)", ease: "none",
-					scrollTrigger: { trigger: el, start: "top bottom", end: "top 35%", scrub: 1 }
+			/* Footer wordmark rises out of the floor. */
+			gsap.utils.toArray(".foot2__mark").forEach(function (el) {
+				gsap.fromTo(el, { yPercent: 60 }, {
+					yPercent: 0, ease: "none",
+					scrollTrigger: { trigger: el.parentElement, start: "top bottom", end: "bottom bottom", scrub: 0.8 }
 				});
 			});
 
@@ -127,7 +92,7 @@
 		/* Nav steps out of the way while reading down, returns on the way up. */
 		ST.create({
 			start: 200, end: "max",
-			onUpdate: function (s) { document.body.classList.toggle("nav-hidden", s.direction === 1 && !document.body.classList.contains("menu-open")); }
+			onUpdate: function (s) { document.body.classList.toggle("nav-hidden", s.direction === 1); }
 		});
 		if (document.fonts) document.fonts.ready.then(function () { ST.refresh(); });
 	}
@@ -139,7 +104,7 @@
 		var target = document.querySelector(id);
 		if (!target) return;
 		e.preventDefault();
-		lenis.scrollTo(target, { offset: -64, duration: 1.4 });
+		lenis.scrollTo(target, { duration: 1.4 });
 		history.pushState(null, "", id);
 	}
 
