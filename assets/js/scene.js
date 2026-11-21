@@ -4,6 +4,7 @@
 import * as THREE from "three";
 import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
 import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+import { buildMe, updateMe } from "./me.js";
 
 const root = document.documentElement;
 const canvas = document.querySelector(".scene");
@@ -116,15 +117,15 @@ const screenLight = new THREE.PointLight(0xb9a8ff, 2.2, 3.2, 1.6);
 screenLight.position.set(0, 1.7, 0.25); scene.add(screenLight);
 
 // Keyboard with instanced keys, mouse, notebook, mug
-mesh(rbox(0.96, 0.025, 0.31, 0.01), M.white, -0.05, DESK_TOP + 0.012, 0.16);
+mesh(rbox(0.96, 0.025, 0.31, 0.01), M.white, -0.05, DESK_TOP + 0.012, 0.27);
 const keyGeo = new THREE.BoxGeometry(0.052, 0.014, 0.05);
 const keys = new THREE.InstancedMesh(keyGeo, std(0xf4f2ee, 0.5), 15 * 4);
 const tmp = new THREE.Object3D(); let k = 0;
 for (let r = 0; r < 4; r++) for (let c = 0; c < 15; c++) {
-	tmp.position.set(-0.05 - 0.42 + c * 0.06, DESK_TOP + 0.03, 0.16 - 0.09 + r * 0.06); tmp.updateMatrix(); keys.setMatrixAt(k++, tmp.matrix);
+	tmp.position.set(-0.05 - 0.42 + c * 0.06, DESK_TOP + 0.03, 0.27 - 0.09 + r * 0.06); tmp.updateMatrix(); keys.setMatrixAt(k++, tmp.matrix);
 }
 keys.castShadow = true; scene.add(keys);
-const mouse3 = mesh(new THREE.SphereGeometry(0.06, 24, 16), M.white, 0.68, DESK_TOP + 0.012, 0.2); mouse3.scale.set(0.9, 0.38, 1.4);
+const mouse3 = mesh(new THREE.SphereGeometry(0.06, 24, 16), M.white, 0.68, DESK_TOP + 0.012, 0.3); mouse3.scale.set(0.9, 0.38, 1.4);
 const book = mesh(rbox(0.36, 0.022, 0.48, 0.006), M.oxblood, -0.72, DESK_TOP + 0.011, 0.16); book.rotation.y = 0.32;
 mesh(rbox(0.33, 0.004, 0.45, 0.002), std(0xf1ece3, 0.8), -0.72, DESK_TOP + 0.024, 0.16).rotation.y = 0.32;
 const mug = new THREE.Group(); mug.position.set(0.98, DESK_TOP, 0.22); scene.add(mug);
@@ -159,7 +160,7 @@ lampLight.castShadow = true; lampLight.shadow.mapSize.set(1024, 1024); lampLight
 scene.add(lampLight, lampLight.target);
 
 // Chair
-const chair = new THREE.Group(); chair.position.set(0.15, 0, 1.15); chair.rotation.y = -0.25; scene.add(chair);
+const chair = new THREE.Group(); chair.position.set(-0.05, 0, 0.88); scene.add(chair);
 mesh(rbox(0.6, 0.08, 0.56, 0.035), M.fabric, 0, 0.56, 0, chair);
 const back = mesh(rbox(0.58, 0.72, 0.07, 0.035), M.fabric, 0, 1.0, 0.3, chair); back.rotation.x = 0.12;
 mesh(new THREE.CylinderGeometry(0.03, 0.03, 0.45, 12), M.metal, 0, 0.3, 0, chair);
@@ -168,6 +169,10 @@ for (let i = 0; i < 5; i++) {
 	const leg = mesh(new THREE.BoxGeometry(0.34, 0.03, 0.05), M.metal, Math.cos(a) * 0.17, 0.07, Math.sin(a) * 0.17, chair); leg.rotation.y = -a;
 	mesh(new THREE.SphereGeometry(0.03, 12, 8), M.black, Math.cos(a) * 0.33, 0.03, Math.sin(a) * 0.33, chair);
 }
+
+const rig = buildMe(chair);
+const CHAIR_DESK = 0; // facing the monitor
+const chairToCam = new THREE.Vector3();
 
 // Homelab box under the desk, with LEDs
 const lab = new THREE.Group(); lab.position.set(0.85, 0, -0.15); scene.add(lab);
@@ -364,7 +369,7 @@ const redrawBallLabels = () => balls.forEach(b => {
 const SOLIDS = [
 	new THREE.Box3(new THREE.Vector3(-1.3, 0, -0.575), new THREE.Vector3(1.3, DESK_TOP, 0.575)),
 	new THREE.Box3(new THREE.Vector3(-0.82, DESK_TOP, -0.42), new THREE.Vector3(0.82, 2.22, -0.26)),
-	new THREE.Box3(new THREE.Vector3(-0.2, 0, 0.82), new THREE.Vector3(0.5, 0.6, 1.45)),
+	new THREE.Box3(new THREE.Vector3(-0.4, 0, 0.55), new THREE.Vector3(0.3, 1.35, 1.2)), // chair + Adrie
 ];
 let dropped = false;
 function dropBalls() {
@@ -453,7 +458,7 @@ addEventListener("pointerdown", (e) => pushAt(e.clientX, e.clientY, 1.6), { pass
 /* ---------- Camera shots, blended by scroll ---------- */
 // pos, target, and where the subject sits on screen (view offset as a fraction of width/height)
 const SHOTS = {
-	hero: { p: [3.5, 2.6, 4.4], t: [0, 1.15, 0], o: [-0.27, 0.03] },
+	hero: { p: [3.3, 2.4, 4.6], t: [-0.1, 1.15, 0.2], o: [-0.31, 0.03] },
 	desk: { p: [2.0, 2.1, 2.8], t: [0, 1.5, -0.25], o: [-0.26, 0] },
 	wedd: { p: [1.15, 1.95, 2.55], t: [0, 1.66, -0.34], o: [-0.27, 0] },
 	film: { p: [-0.9, 1.95, 2.55], t: [0, 1.66, -0.34], o: [-0.27, 0] },
@@ -537,6 +542,13 @@ function frame(now) {
 		cur.p.copy(want.p); cur.t.copy(want.t); cur.o.copy(want.o);
 		pointer.x = pointer.y = 0;
 	}
+	// Adrie: spins round to wave in the hero and contact shots, types otherwise
+	const pose = active === "hero" || active === "contact" ? "wave" : "type";
+	chairToCam.subVectors(cur.p, chair.position);
+	const face = pose === "wave" ? Math.atan2(-chairToCam.x, -chairToCam.z) : CHAIR_DESK;
+	let dA = face - chair.rotation.y; dA = Math.atan2(Math.sin(dA), Math.cos(dA));
+	chair.rotation.y += moving ? dA * (1 - Math.exp(-dt * 3)) : dA;
+	updateMe(rig, pose, moving ? dt : 1, moving ? clock.t : 0, pose === "wave" ? cur.p : screen.getWorldPosition(A));
 	if (!needsRender) return;
 	needsRender = false;
 

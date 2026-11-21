@@ -8,18 +8,18 @@ Live: https://adfdzly.github.io
 ## Structure
 
 ```
-index.html                 # home: loader, name + portrait hero, statement, work index, numbers, about, contact
+index.html                 # home: 3D desk scene behind hero, what I do, work, career, stack, also built, contact
 work/index.html            # work index
 work/wedd/                 # case study: Couple / Vendor / System switch
 work/aeskafilm/            # case study: Scan / Capture / Reveal film strip
 work/pricepulse/           # case study: chart inspector + evaluation
-assets/css/site.css        # tokens, top bar, cursor, work rows + hover preview, footer, case study pages
-assets/css/home.css        # home only: loader, hero, statement, marquee, numbers, about, contact
+assets/css/site.css        # tokens, pill nav, cursor, work rows + hover preview, footer, case study pages
+assets/css/home.css        # home only: scene layer, loader, sections, cards, timeline
+assets/js/scene.js         # home 3D scene (Three.js r160): desk, monitor screens, camera shots, tech balls
+assets/js/me.js            # the stylised 3D Adrie (from images/Profile.jpg): types, spins round, waves, blinks
 assets/js/site.js          # motion switch, clock, cursor + work preview, copy, tabs, strip, inspector
 assets/js/motion.js        # Lenis smooth scroll + GSAP ScrollTrigger (headline rise, row slide, footer mark)
-assets/js/home.js          # home only: loader count, hero scroll, scroll-read statement
 assets/favicon.svg
-images/hero.webp           # hero portrait (from images/Profile.jpg)
 images/portrait.webp       # about portrait (cropped from images/Me.jpg)
 images/pricepulse/         # screenshots from the public PricePulse demo (synthetic data)
 images/og/                 # 1200x630 share images, one per page
@@ -27,18 +27,18 @@ images/og/                 # 1200x630 share images, one per page
 
 ## Design notes
 
-- Editorial index style: huge condensed display type, small mono labels in the corners,
-  one signal colour.
-- Palette: near-black `#0C0C0B`, graphite `#151513`, bone `#ECE7DF`, stone `#8E8A83`,
-  signal red-orange `#FF4A1C`; case covers keep oxblood `#4A1418` and champagne `#C4AA8B`.
-- Type: Archivo (variable width; display set at `font-stretch: 62%`), Instrument Serif italic
-  (accent words), IBM Plex Mono (labels).
-- Home: a 0–100% loader once per browser session, then the name rises over a black-and-white
-  portrait. Scrolling pins the hero while the photo grows to full screen and the name parts.
-- Work rows: hovering a project shows a preview card that follows the cursor (desktop only);
-  the cursor turns into a "View case" label over projects.
+- Look: near-black `#050505`, Geist with a few Instrument Serif italic words per heading, Geist Mono
+  pill labels, fine-bordered glass panels, a floating pill nav, and one soft violet glow `#B9A8FF`.
+  Same family as aeskalab.com.
+- Home is one Three.js scene behind the page. Each section with `data-shot` is a camera keyframe;
+  scrolling blends between them. The monitor redraws per section (terminal, code, Wedd, AeskaFilm,
+  the PricePulse dashboard, git log, stack, SM Agent, an email). In the stack section the tech balls
+  drop onto the platform and react to the pointer.
+- The character is built from primitives and coloured from `images/Profile.jpg`. He types at the desk,
+  turns round to wave in the hero and contact shots, follows the camera with his head, and blinks.
+- Without WebGL the page shows a gradient fallback and the stack as text chips.
 - Motion: the Motion switch (top bar and footer) is saved in `localStorage`; the OS reduced-motion
-  setting turns it off by default. With motion off there is no loader, cursor or scroll effects.
+  setting turns it off by default. With motion off the scene still renders, but as still frames.
 
 ## Develop locally
 

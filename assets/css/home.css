@@ -48,7 +48,7 @@ main, .foot2 { position: relative; z-index: 1; }
 
 /* Hero */
 .hero { min-height: 100svh; }
-.hero__h { max-width: 11.5em; }
+.hero__h { max-width: 10em; font-size: clamp(44px, 6.4vw, 92px); }
 .hero__cta { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 30px; }
 .hero__status { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 28px; }
 .hero__status span { display: inline-flex; align-items: center; gap: 8px; }
