@@ -6,7 +6,7 @@
 	<title>Adrie Fadzly, software engineer and founder of AESKA Lab Solution</title>
 	<meta name="description" content="Adrie Fadzly builds software for the way people plan, celebrate, and make decisions. Software engineer and founder of AESKA Lab Solution, based in Malaysia." />
 	<meta name="author" content="Muhammad Adrie Fadzly" />
-	<meta name="theme-color" content="#0c0c0b" />
+	<meta name="theme-color" content="#050505" />
 	<link rel="canonical" href="https://adfdzly.github.io/" />
 	<meta property="og:type" content="website" />
 	<meta property="og:title" content="Adrie Fadzly" />
@@ -17,277 +17,232 @@
 	<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" />
-	<link rel="preload" as="image" href="/images/hero.webp" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" />
 	<link rel="stylesheet" href="/assets/css/site.css" />
 	<link rel="stylesheet" href="/assets/css/home.css" />
 	<script>
 		(function () {
-			var d = document.documentElement, m, s;
+			var d = document.documentElement, m;
 			try { m = localStorage.getItem("af-motion"); } catch (e) {}
 			if (m !== "on" && m !== "off") m = matchMedia("(prefers-reduced-motion: reduce)").matches ? "off" : "on";
 			d.dataset.motion = m;
-			try { s = sessionStorage.getItem("af-intro"); sessionStorage.setItem("af-intro", "1"); } catch (e) {}
-			if (m === "on" && !s) d.classList.add("intro");
+			d.classList.add("is-loading");
 		})();
+	</script>
+	<script type="importmap">
+		{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/" } }
 	</script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 	<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
 	<script src="/assets/js/motion.js" defer></script>
 	<script src="/assets/js/site.js" defer></script>
-	<script src="/assets/js/home.js" defer></script>
+	<script type="module" src="/assets/js/scene.js"></script>
 </head>
 <body>
 	<a class="skip" href="#main">Skip to content</a>
 
-	<!-- Loader: first visit per session, motion on only -->
+	<!-- The 3D scene sits behind everything; sections below tell it where the camera goes (data-shot). -->
+	<canvas class="scene" aria-hidden="true"></canvas>
+	<div class="scene-fallback" aria-hidden="true"></div>
+
 	<div class="loader" aria-hidden="true">
-		<span class="k">Loading</span>
-		<span class="k loader__r">Johor Bahru · MY</span>
-		<span class="loader__n"><b>0</b>%</span>
-		<span class="k loader__b">AF® — Portfolio 2026</span>
+		<p class="loader__n"><b>0</b>%</p>
+		<p class="k">Building the scene</p>
 	</div>
 
 	<div class="cur" aria-hidden="true"><span class="cur__label"></span></div>
 
 	<header class="tb">
-		<a class="tb__brand" href="/">AF<sup>®</sup><span>Adrie Fadzly</span></a>
+		<a class="tb__brand" href="/" aria-label="Adrie Fadzly, home"><b>ADRIE FADZLY</b><span>Software engineer</span></a>
 		<nav class="tb__nav" aria-label="Primary">
-			<a href="#work"><i>01</i>Work</a>
-			<a href="#about"><i>02</i>About</a>
-			<a href="#contact"><i>03</i>Contact</a>
+			<a href="#work">Work</a>
+			<a href="#about">About</a>
+			<a href="#contact">Contact</a>
 		</nav>
 		<div class="tb__end">
 			<button class="motion-btn" type="button" aria-pressed="true"><i aria-hidden="true"></i>Motion</button>
-			<a class="pill pill--solid" href="/assets/Resume-Adrie-Fadzly.pdf">Résumé ↓</a>
+			<a class="pill pill--solid" href="#contact">Get in touch →</a>
 		</div>
 	</header>
 
 	<main id="main">
 
 		<!-- ============ Hero ============ -->
-		<div class="hpin">
-		<section class="hero" aria-labelledby="name">
-			<h1 class="hero__name" id="name">
-				<span class="ln"><span>Adrie</span></span>
-				<span class="ln ln--r"><span>Fadzly</span></span>
-			</h1>
-
-			<figure class="hero__photo">
-				<img src="/images/hero.webp" width="1000" height="1112" alt="Adrie Fadzly in a dark blazer, leaning on a railing and looking to the side" fetchpriority="high" />
-			</figure>
-
-			<p class="hero__k hero__k--tl k">Software engineer<br />Founder, AESKA Lab Solution</p>
-			<p class="hero__k hero__k--tr k">1.49°N 103.74°E<br /><span data-clock>Johor Bahru</span></p>
-
-			<div class="hero__line">
-				<p>I build software for the way people
-					<span class="rot" aria-hidden="true"><span class="rot__in"><span>plan.</span><span>celebrate.</span><span>decide.</span><span>plan.</span></span></span>
-					<span class="sr-only">plan, celebrate, and make decisions.</span>
-				</p>
-			</div>
-			<a class="hero__scroll k" href="#work">Scroll <span aria-hidden="true">↓</span></a>
-		</section>
-		</div>
-
-		<!-- ============ Statement ============ -->
-		<section class="say" aria-label="Introduction">
-			<p class="k say__k">(Intro)</p>
-			<p class="say__p" data-read>
-				I'm Adrie, a software engineer in Malaysia and the founder of
-				<span class="tok"><i class="tok__dot"></i>AESKA Lab</span>.
-				I build web apps end to end, from the database and API to the interface, plus
-				<span class="tok">AI agents</span> and the infrastructure they run on.
-				I build them to <em>fail closed</em>, measure everything, and keep them simple.
-			</p>
-		</section>
-
-		<!-- ============ Marquee ============ -->
-		<div class="mq" aria-hidden="true">
-			<div class="mq__track">
-				<span>Wedd</span><b>✳</b><span class="o">AeskaFilm</span><b>✳</b><span>PricePulse</span><b>✳</b><span class="o">SM Agent</span><b>✳</b>
-				<span>Wedd</span><b>✳</b><span class="o">AeskaFilm</span><b>✳</b><span>PricePulse</span><b>✳</b><span class="o">SM Agent</span><b>✳</b>
-			</div>
-		</div>
-
-		<!-- ============ Work index ============ -->
-		<section id="work" class="work" aria-labelledby="t-work">
-			<div class="work__head">
-				<h2 id="t-work" class="disp">Selected<br />work <sup>(03)</sup></h2>
-				<p class="k work__cols" aria-hidden="true"><span>No.</span><span>Project</span><span>Role</span><span>Year</span></p>
-			</div>
-
-			<ol class="rows">
-				<li class="row">
-					<a class="row__a" href="/work/wedd/" data-cursor="View case" data-preview="wedd">
-						<span class="row__n k">01</span>
-						<span class="row__t">Wedd</span>
-						<span class="row__d">A wedding marketplace and planner. Anyone looking at a booking can tell who is holding the money, and why.</span>
-						<span class="row__r k">Lead engineer</span>
-						<span class="row__y k">2026</span>
-					</a>
-				</li>
-				<li class="row">
-					<a class="row__a" href="/work/aeskafilm/" data-cursor="View case" data-preview="film">
-						<span class="row__n k">02</span>
-						<span class="row__t">AeskaFilm</span>
-						<span class="row__d">A disposable camera on every table. Guests scan a QR card, shoot from the browser, and the roll develops overnight.</span>
-						<span class="row__r k">Founder &amp; engineer</span>
-						<span class="row__y k">Live</span>
-					</a>
-				</li>
-				<li class="row">
-					<a class="row__a" href="/work/pricepulse/" data-cursor="View case" data-preview="pp">
-						<span class="row__n k">03</span>
-						<span class="row__t">PricePulse</span>
-						<span class="row__d">Will it be cheaper next week? Lazada and Shopee listings matched to one product, and a model that predicts the direction.</span>
-						<span class="row__r k">Final Year Project · Best Project Award</span>
-						<span class="row__y k">2026</span>
-					</a>
-				</li>
-			</ol>
-
-			<!-- Floating preview (desktop). Each panel is an illustration, not a product screenshot unless noted. -->
-			<div class="pv" aria-hidden="true">
-				<div class="pv__in">
-					<div class="pv__p pv__p--wedd" data-p="wedd">
-						<span class="pv__mark">Wedd</span>
-						<div class="pv__card">
-							<p class="pv__row"><span>Sat · 14 Feb 2027</span><span class="pv__ok">● Confirmed</span></p>
-							<p class="pv__h">Akad &amp; reception, full-day photography</p>
-							<p class="pv__row pv__line"><span>Deposit</span><span>RM 1,500 · paid</span></p>
-							<p class="pv__row pv__hold"><span>Vendor payout</span><span>● On hold until sign-off</span></p>
-						</div>
-					</div>
-					<div class="pv__p pv__p--film" data-p="film">
-						<i class="ph-1"></i><i class="ph-2"></i><i class="ph-3"></i><i class="ph-4"></i><i class="ph-5"></i><i class="ph-6"></i>
-						<span class="pv__tag k">Roll 01 · Develops overnight</span>
-					</div>
-					<div class="pv__p pv__p--pp" data-p="pp">
-						<img src="/images/pricepulse/dashboard.webp" alt="" loading="lazy" decoding="async" />
-					</div>
+		<section class="sec hero" data-shot="hero" aria-labelledby="name">
+			<div class="sec__in">
+				<p class="eyebrow">Adrie Fadzly · Johor Bahru, MY</p>
+				<h1 class="h h--xl hero__h" id="name">I build software for the way people <em>plan, celebrate</em> and <em>decide.</em></h1>
+				<p class="sub">Software engineer and founder of <a href="https://aeskalab.com" rel="noopener">AESKA Lab Solution</a>. Web apps end to end, AI agents, and the infrastructure they run on.</p>
+				<div class="hero__cta">
+					<a class="pill pill--solid" href="#work">See the work →</a>
+					<a class="pill" href="/assets/Resume-Adrie-Fadzly.pdf">Résumé ↓</a>
 				</div>
+				<p class="hero__status k"><span>Founder, AESKA Lab</span><span>Intern, MoneyMax</span><span>BSc CS, UiTM</span></p>
 			</div>
-			<p class="note work__note">Wedd and AeskaFilm previews are redrawn illustrations. PricePulse shows the real dashboard with demo data.</p>
+			<p class="hero__hint k" aria-hidden="true">Scroll to walk around the desk ↓</p>
 		</section>
 
-		<!-- ============ Numbers ============ -->
-		<section class="nums" aria-labelledby="t-nums">
-			<h2 id="t-nums" class="k nums__k">(In numbers)</h2>
-			<dl class="nums__g">
-				<div><dt>SM Agent, lines of code, in daily production</dt><dd>45k</dd></div>
-				<div><dt>Tests behind it, on a USD 5 a month model budget</dt><dd>790</dd></div>
-				<div><dt>Reusable screen blocks in the Pawn Suite QA framework</dt><dd>300+</dd></div>
-				<div><dt>Macro F1 for PricePulse, judged against “always stable” at 0.76 accuracy</dt><dd>0.432</dd></div>
-			</dl>
+		<!-- ============ What I do ============ -->
+		<section id="about" class="sec" data-shot="desk" aria-labelledby="t-do">
+			<div class="sec__in">
+				<p class="eyebrow">What I do</p>
+				<h2 class="h" id="t-do">The code enforces the rules. <em>The AI provides the judgement.</em></h2>
+				<div class="cards3">
+					<article class="glass card">
+						<p class="k">01 · Build</p>
+						<h3>Web apps, end to end</h3>
+						<p>Database, API and interface. NestJS, Django and FastAPI on PostgreSQL, React and Next.js on the front.</p>
+					</article>
+					<article class="glass card">
+						<p class="k">02 · Automate</p>
+						<h3>AI agents that ship</h3>
+						<p>Multi-agent systems that write, check and publish, and QA tooling that verifies its own evidence.</p>
+					</article>
+					<article class="glass card">
+						<p class="k">03 · Run</p>
+						<h3>Infrastructure I trust</h3>
+						<p>CI, managed secrets, Docker and a Proxmox homelab where my work gets tested before it ships.</p>
+					</article>
+				</div>
+				<p class="sub say">I started in applied data work. PricePulse taught me that a model can hit 76% accuracy without ever predicting a change, so now I decide how to measure something before I build it. I build things to <em class="serif">fail closed</em>, measure everything, and keep them simple.</p>
+			</div>
+		</section>
+
+		<!-- ============ Work ============ -->
+		<section id="work" class="sec work" aria-labelledby="t-work">
+			<div class="sec__in">
+				<p class="eyebrow">Selected work · 03</p>
+				<h2 class="h" id="t-work">Three products, <em>built end to end.</em></h2>
+			</div>
+
+			<article class="sec__in proj" data-shot="wedd">
+				<div class="glass proj__card">
+					<p class="k">01 · Lead engineer · 2026 · In development</p>
+					<h3>Wedd</h3>
+					<p class="serif proj__tag">From finding a vendor to booking the day.</p>
+					<p>A wedding marketplace and planner for Malaysia. One backend serves two web apps and two mobile apps, and anyone looking at a booking can tell who is holding the money, and why.</p>
+					<ul class="chips"><li>NestJS</li><li>Prisma</li><li>PostgreSQL</li><li>React</li><li>Expo</li></ul>
+					<a class="pill" href="/work/wedd/" data-cursor="View case">Read the case study →</a>
+				</div>
+			</article>
+
+			<article class="sec__in proj" data-shot="film">
+				<div class="glass proj__card">
+					<p class="k">02 · Founder &amp; engineer · Live product</p>
+					<h3>AeskaFilm</h3>
+					<p class="serif proj__tag">A disposable camera on every table.</p>
+					<p>Guests scan a QR card and shoot from their phone's browser. No app, no retakes, no peeking. The roll develops overnight into a scrapbook.</p>
+					<ul class="chips"><li>Next.js</li><li>Cloudflare Workers</li><li>Neon Postgres</li><li>R2</li></ul>
+					<a class="pill" href="/work/aeskafilm/" data-cursor="View case">Read the case study →</a>
+				</div>
+			</article>
+
+			<article class="sec__in proj" data-shot="pp">
+				<div class="glass proj__card">
+					<p class="k">03 · Final Year Project · Best Project Award</p>
+					<h3>PricePulse</h3>
+					<p class="serif proj__tag">Will it be cheaper next week?</p>
+					<p>A weekly pipeline matches Lazada and Shopee listings into one product, and a Random Forest predicts next week's price as up, down or stable. Macro F1 0.432, judged against an “always stable” baseline.</p>
+					<ul class="chips"><li>Django</li><li>Celery</li><li>Playwright</li><li>scikit-learn</li></ul>
+					<a class="pill" href="/work/pricepulse/" data-cursor="View case">Read the case study →</a>
+				</div>
+			</article>
+			<p class="sec__in note">The monitor shows redrawn illustrations for Wedd and AeskaFilm, and the real PricePulse dashboard with demo data.</p>
+		</section>
+
+		<!-- ============ Career ============ -->
+		<section class="sec" data-shot="career" aria-labelledby="t-career">
+			<div class="sec__in">
+				<p class="eyebrow">Career &amp; experience</p>
+				<h2 class="h" id="t-career">Where I've been <em>building.</em></h2>
+				<ol class="tl">
+					<li class="glass tl__i">
+						<p class="tl__when">Sep 2026 – now</p>
+						<div>
+							<h3>Full Stack Developer Intern <small>MoneyMax</small></h3>
+							<p>A Python and Playwright framework for the Pawn Suite with 300+ reusable screen blocks, a Jira-linked QA dashboard with an embedded Claude Code assistant, and a rule engine that checks Ar-Rahnu profit, charges and expiry. CI with secret scanning and NRIC masking in all evidence.</p>
+						</div>
+					</li>
+					<li class="glass tl__i">
+						<p class="tl__when">Jun 2026 – now</p>
+						<div>
+							<h3>Founder <small>AESKA Lab Solution, Johor Bahru</small></h3>
+							<p>Built AeskaFilm and SM Agent. Run the engineering workflow: PR-based branching, CI, managed secrets and a self-hosted staging environment.</p>
+						</div>
+					</li>
+					<li class="glass tl__i">
+						<p class="tl__when">Aug 2026</p>
+						<div><h3>Best Project Award <small>BSc Computer Science, UiTM Jasin (PricePulse)</small></h3></div>
+					</li>
+					<li class="glass tl__i">
+						<p class="tl__when">2023 – now</p>
+						<div>
+							<h3>BSc (Hons) Computer Science, Big Data <small>UiTM Jasin · CGPA 3.75</small></h3>
+							<p>President of Persatuan Seni Silat Cekak Malaysia, UiTM Jasin (2024–2025): led a 7-person committee and grew event participation by more than 150%.</p>
+						</div>
+					</li>
+					<li class="glass tl__i">
+						<p class="tl__when">Earlier</p>
+						<div><h3>Matriculation, CGPA 3.90 <small>Malacca Matriculation College · DataCamp Data Scientist and Data Analyst in Python · Padini Holdings, 2023</small></h3></div>
+					</li>
+				</ol>
+			</div>
+		</section>
+
+		<!-- ============ Stack ============ -->
+		<section class="sec stack" data-shot="stack" aria-labelledby="t-stack">
+			<div class="sec__in">
+				<p class="eyebrow">My stack</p>
+				<h2 class="h" id="t-stack">Tools I reach for. <em>Go on, push them around.</em></h2>
+				<ul class="chips chips--stack" aria-label="Tech stack">
+					<li>Python</li><li>TypeScript</li><li>Django</li><li>FastAPI</li><li>NestJS</li><li>React</li><li>Next.js</li><li>PostgreSQL</li>
+					<li>Redis</li><li>Celery</li><li>Docker</li><li>Playwright</li><li>GitHub Actions</li><li>Linux</li><li>Proxmox</li><li>Cloudflare</li>
+				</ul>
+			</div>
 		</section>
 
 		<!-- ============ Also built ============ -->
-		<section class="also" aria-labelledby="t-also">
-			<h2 id="t-also" class="disp disp--s">Also built</h2>
-			<ul class="also__l">
-				<li><a href="https://github.com/adfdzly/sm-agent-showcase" rel="noopener" data-cursor="Showcase ↗">
-					<span class="also__t">SM Agent</span><span class="k">AESKA · 2026</span>
-					<span class="also__d">A self-learning multi-agent system that writes, checks, schedules and publishes social posts and replies to comments in a house style.</span>
-					<span class="also__go" aria-hidden="true">↗</span></a></li>
-				<li><div>
-					<span class="also__t">Pawn Suite QA automation</span><span class="k">MoneyMax · 2026</span>
-					<span class="also__d">A Python and Playwright framework with 300+ reusable screen blocks, a Jira-linked QA dashboard with an AI assistant, and evidence-backed ticket verification.</span>
-					<span class="also__go k">Internal</span></div></li>
-				<li><a href="https://github.com/adfdzly/Employee-Leave-Management-System" rel="noopener" data-cursor="Source ↗">
-					<span class="also__t">LeaveSecure</span><span class="k">Django · MySQL</span>
-					<span class="also__d">Leave management with role-based access, rate limiting, audit logging, password policy and SQL injection protection. One docker compose up.</span>
-					<span class="also__go" aria-hidden="true">↗</span></a></li>
-				<li><div>
-					<span class="also__t">Homelab</span><span class="k">Proxmox · 2026</span>
-					<span class="also__d">Proxmox and Ubuntu Server with 2+ VMs and 10+ Docker containers, networking, remote access and monitoring. Most of my work is tested here first.</span>
-					<span class="also__go k">Self-hosted</span></div></li>
-			</ul>
-		</section>
-
-		<!-- ============ About ============ -->
-		<section id="about" class="about" aria-labelledby="t-about">
-			<div class="about__grid">
-				<figure class="about__ph">
-					<img data-settle src="/images/portrait.webp" width="720" height="900" alt="Adrie Fadzly in a dark suit, arms crossed, outside a UiTM building" loading="lazy" decoding="async" />
-					<figcaption class="k">UiTM Jasin · 2026</figcaption>
-				</figure>
-
-				<div class="about__txt">
-					<p class="k">(About)</p>
-					<h2 id="t-about" class="about__h" data-split>The code enforces the rules. <em>The AI provides the judgement.</em></h2>
-					<div class="about__cols">
-						<p>I founded <a href="https://aeskalab.com" rel="noopener">AESKA Lab Solution</a>, a small Malaysian studio that builds consumer products and AI automation. I'm also a Full Stack Developer Intern at MoneyMax while I finish a Computer Science degree in Big Data at UiTM.</p>
-						<p>I started in applied data work: scraping marketplaces, matching messy listings, training models. PricePulse taught me that a model can hit 76% accuracy without ever predicting a change, so now I decide how to measure something before I build it.</p>
-					</div>
-
-					<div class="rec">
-						<details open>
-							<summary><span>Experience</span><i aria-hidden="true"></i></summary>
-							<div class="rec__i"><p class="k">Sep 2026 – now</p><div><h3>Full Stack Developer Intern <small>MoneyMax</small></h3>
-								<ul>
-									<li>Built a Python and Playwright test framework for the Pawn Suite with 300+ reusable, config-driven screen blocks. 100+ Retail and HQ pages pass live on UAT.</li>
-									<li>Built a local QA dashboard where non-programmer QA pull cases from Jira, run up to three in parallel, review screenshot and video evidence, and ask an embedded Claude Code assistant to build missing cases.</li>
-									<li>Built a Playwright and TypeScript suite for the Ar-Rahnu counter system, with a rule engine that independently computes profit, charges, rounding and expiry, plus checks on printed pledge tickets.</li>
-									<li>Automated Jira verification and put team safeguards in place: CI with secret scanning, SHA-256 framework locking, and NRIC masking in all evidence.</li>
-								</ul></div></div>
-							<div class="rec__i"><p class="k">Jun 2026 – now</p><div><h3>Founder <small>AESKA Lab Solution, Johor Bahru</small></h3>
-								<ul>
-									<li>Built AeskaFilm, an event photo product for weddings, graduations and parties.</li>
-									<li>Designed and built SM Agent, which runs the company's social media end to end.</li>
-									<li>Run the engineering workflow: PR-based branching, CI, managed secrets and a self-hosted staging environment.</li>
-								</ul></div></div>
-							<div class="rec__i"><p class="k">Jun – Aug 2023</p><div><h3>Part-Time Sales Assistant <small>Padini Holdings</small></h3>
-								<ul><li>Verified 300 to 500 incoming deliveries against stock lists and advised customers.</li></ul></div></div>
-						</details>
-						<details>
-							<summary><span>Education</span><i aria-hidden="true"></i></summary>
-							<div class="rec__i"><p class="k">2023 – now</p><div><h3>BSc (Hons) Computer Science, Big Data <small>UiTM Jasin · CGPA 3.75</small></h3></div></div>
-							<div class="rec__i"><p class="k">2022 – 2023</p><div><h3>Malaysian Matriculation Certificate <small>Malacca Matriculation College · CGPA 3.90</small></h3></div></div>
-							<div class="rec__i"><p class="k">2017 – 2022</p><div><h3>SPM <small>Maktab Sultan Abu Bakar (English College) · 6A 2B</small></h3></div></div>
-						</details>
-						<details>
-							<summary><span>Recognition</span><i aria-hidden="true"></i></summary>
-							<div class="rec__i"><p class="k">Aug 2026</p><div><h3>Best Project Award <small>BSc Computer Science, UiTM Jasin (PricePulse)</small></h3></div></div>
-							<div class="rec__i"><p class="k">Oct 2025</p><div><h3>Data Analyst in Python <small>DataCamp</small></h3></div></div>
-							<div class="rec__i"><p class="k">Sep 2025</p><div><h3>Data Scientist in Python <small>DataCamp</small></h3></div></div>
-						</details>
-						<details>
-							<summary><span>Leadership</span><i aria-hidden="true"></i></summary>
-							<div class="rec__i"><p class="k">2024 – 2025</p><div><h3>President <small>Persatuan Seni Silat Cekak Malaysia, UiTM Jasin</small></h3>
-								<ul><li>Led a 7-person committee, grew event participation by more than 150%, and ran a cross-campus performance with two UiTM branches.</li></ul></div></div>
-							<div class="rec__i"><p class="k">2023 – 2025</p><div><h3>Treasurer <small>Malaysian Civil Defence club, UiTM Jasin</small></h3></div></div>
-							<div class="rec__i"><p class="k">2022 – 2023</p><div><h3>Leader, Peer Assisted Learning (Accounting) <small>Malacca Matriculation College</small></h3></div></div>
-						</details>
-						<details>
-							<summary><span>Stack</span><i aria-hidden="true"></i></summary>
-							<ul class="tags">
-								<li class="pin">Full-stack development</li><li class="pin">Python</li><li class="pin">Playwright</li><li class="pin">Test automation</li><li class="pin">AI agents / LLMs</li>
-								<li>Django</li><li>FastAPI</li><li>Flask</li><li>TypeScript</li><li>React</li><li>Next.js</li><li>PostgreSQL</li><li>MySQL</li><li>Redis</li><li>Celery</li>
-								<li>Docker</li><li>GitHub Actions</li><li>Jira</li><li>Machine learning</li><li>ETL pipelines</li><li>Linux</li><li>Proxmox</li><li>Cloudflare</li><li>Java</li><li>Power BI</li>
-							</ul>
-							<p class="k" style="text-transform:none;margin-top:16px">Malay (native) · English (full professional)</p>
-						</details>
-					</div>
-				</div>
+		<section class="sec" data-shot="also" aria-labelledby="t-also">
+			<div class="sec__in">
+				<p class="eyebrow">Also built</p>
+				<h2 class="h" id="t-also">Smaller things, <em>still in production.</em></h2>
+				<ul class="also__l glass also">
+					<li><a href="https://github.com/adfdzly/sm-agent-showcase" rel="noopener" data-cursor="Showcase ↗">
+						<span class="also__t">SM Agent</span><span class="k">AESKA · 2026</span>
+						<span class="also__d">A self-learning multi-agent system that writes, checks, schedules and publishes social posts. About 45k lines and 790 tests, on a USD 5 a month model budget.</span>
+						<span class="also__go" aria-hidden="true">↗</span></a></li>
+					<li><div>
+						<span class="also__t">Pawn Suite QA automation</span><span class="k">MoneyMax · 2026</span>
+						<span class="also__d">Python and Playwright with 300+ reusable screen blocks, a Jira-linked QA dashboard with an AI assistant, and evidence-backed ticket verification.</span>
+						<span class="also__go k">Internal</span></div></li>
+					<li><a href="https://github.com/adfdzly/Employee-Leave-Management-System" rel="noopener" data-cursor="Source ↗">
+						<span class="also__t">LeaveSecure</span><span class="k">Django · MySQL</span>
+						<span class="also__d">Leave management with role-based access, rate limiting, audit logging and SQL injection protection. One docker compose up.</span>
+						<span class="also__go" aria-hidden="true">↗</span></a></li>
+					<li><div>
+						<span class="also__t">Homelab</span><span class="k">Proxmox · 2026</span>
+						<span class="also__d">Proxmox and Ubuntu Server with 2+ VMs and 10+ Docker containers, networking, remote access and monitoring.</span>
+						<span class="also__go k">Self-hosted</span></div></li>
+				</ul>
 			</div>
 		</section>
 
 		<!-- ============ Contact ============ -->
-		<section id="contact" class="contact2" aria-labelledby="t-contact">
-			<p class="k">(Contact)</p>
-			<h2 id="t-contact" class="contact2__h"><span>Have something</span> <span>to <em>build?</em></span></h2>
-			<div class="contact2__row">
-				<div class="mail2">
-					<a href="mailto:mafadzly@gmail.com" data-cursor="Write ↗">mafadzly@gmail.com</a>
-					<button class="pill" type="button" data-copy="mafadzly@gmail.com" aria-describedby="copy-status"><span>Copy</span></button>
+		<section id="contact" class="sec contact3" data-shot="contact" aria-labelledby="t-contact">
+			<div class="sec__in">
+				<p class="eyebrow">Contact</p>
+				<h2 class="h h--xl" id="t-contact">Have something <em>to build?</em></h2>
+				<p class="sub">Email is the fastest way to reach me. Malay or English.</p>
+				<div class="mail3">
+					<a class="pill pill--solid pill--lg" href="mailto:mafadzly@gmail.com" data-cursor="Write ↗">mafadzly@gmail.com</a>
+					<button class="pill pill--lg" type="button" data-copy="mafadzly@gmail.com" aria-describedby="copy-status"><span>Copy</span></button>
 					<span id="copy-status" class="sr-only" role="status"></span>
 				</div>
-				<ul class="contact2__soc">
-					<li><a href="https://www.linkedin.com/in/adrie-fadzly" rel="noopener">LinkedIn ↗</a></li>
-					<li><a href="https://github.com/adfdzly" rel="noopener">GitHub ↗</a></li>
-					<li><a href="/assets/Resume-Adrie-Fadzly.pdf">Résumé, PDF ↓</a></li>
+				<ul class="contact3__soc">
+					<li><a class="link" href="https://www.linkedin.com/in/adrie-fadzly" rel="noopener">LinkedIn ↗</a></li>
+					<li><a class="link" href="https://github.com/adfdzly" rel="noopener">GitHub ↗</a></li>
+					<li><a class="link" href="/assets/Resume-Adrie-Fadzly.pdf">Résumé, PDF ↓</a></li>
 				</ul>
 			</div>
 		</section>
