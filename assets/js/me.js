@@ -7,7 +7,7 @@ import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.j
 
 const mat = (color, roughness = 0.7) => new THREE.MeshStandardMaterial({ color, roughness, metalness: 0, envMapIntensity: 0.4 });
 const C = {
-	skin: mat(0xa86c4f, 0.6), lip: mat(0x7e4a38, 0.6), hair: mat(0x161514, 0.75), blazer: mat(0x232a3d, 0.85),
+	skin: mat(0xa86c4f, 0.6), hair: mat(0x161514, 0.75), blazer: mat(0x232a3d, 0.85),
 	shirt: mat(0xece2d0, 0.85), pants: mat(0x1b1b1d, 0.85), shoe: mat(0x0d0d0d, 0.45),
 	eye: new THREE.MeshBasicMaterial({ color: 0x0f0c0b }), shine: new THREE.MeshBasicMaterial({ color: 0xffffff }),
 };
@@ -19,6 +19,7 @@ function part(geo, m, x, y, z, parent, sx = 1, sy = 1, sz = 1) {
 	return o;
 }
 const cap = (r, l) => new THREE.CapsuleGeometry(r, l, 6, 16);
+const MOUTH_Y = 0.092; // head-local height of the mouth, below the nose
 const ball = (r) => new THREE.SphereGeometry(r, 32, 24);
 
 export function buildMe(parent) {
@@ -75,9 +76,25 @@ export function buildMe(parent) {
 		return e;
 	});
 	part(ball(0.026), C.skin, 0, 0.14, -0.203, head, 0.85, 1, 0.9);
-	const mouth = part(new THREE.TorusGeometry(0.028, 0.005, 6, 18, Math.PI), C.lip, 0, 0.088, -0.188, head);
-	mouth.rotation.z = Math.PI;
-	part(new RoundedBoxGeometry(0.058, 0.006, 0.008, 1, 0.002), mat(0x7a4f3c), 0, 0.11, -0.191, head); // faint moustache
+	// Mouth: an open smile drawn flat, then wrapped onto the face surface so it never sticks out
+	const onFace = (shape, lift, color) => {
+		const g = new THREE.ShapeGeometry(shape, 24), p = g.attributes.position;
+		for (let i = 0; i < p.count; i++) {
+			const x = p.getX(i), y = p.getY(i) + MOUTH_Y, ny = (y - 0.18) / 1.06;
+			p.setXYZ(i, x, y, -0.98 * Math.sqrt(Math.max(0.04 - x * x - ny * ny, 0)) - lift);
+		}
+		g.computeVertexNormals();
+		const m = new THREE.Mesh(g, new THREE.MeshStandardMaterial({ color, roughness: 0.6, side: THREE.DoubleSide, polygonOffset: true, polygonOffsetFactor: -2 }));
+		head.add(m);
+	};
+	const smile = new THREE.Shape();
+	smile.moveTo(-0.044, 0.004); smile.quadraticCurveTo(0, -0.004, 0.044, 0.004);
+	smile.bezierCurveTo(0.036, -0.03, -0.036, -0.03, -0.044, 0.004);
+	const teeth = new THREE.Shape();
+	teeth.moveTo(-0.036, 0.0); teeth.quadraticCurveTo(0, -0.007, 0.036, 0.0);
+	teeth.quadraticCurveTo(0, -0.018, -0.036, 0.0);
+	onFace(smile, 0.0015, 0x4a1d17);
+	onFace(teeth, 0.0025, 0xf4efe8);
 
 	return { me, torso, arms, neck, head, eyes, blinkIn: 2.5, wave: 0, look: new THREE.Vector3() };
 }
