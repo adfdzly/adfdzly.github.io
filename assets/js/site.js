@@ -73,6 +73,26 @@
 		motionListeners.push(syncCur);
 	}
 
+	/* ---------- Contact form (Formspree) ---------- */
+	document.querySelectorAll("[data-form]").forEach(function (form) {
+		var btn = form.querySelector("[type=submit]");
+		var msg = form.querySelector("[role=status]");
+		var say = function (text, cls) { msg.textContent = text; msg.className = "form3__msg k " + cls; };
+		form.addEventListener("submit", function (e) {
+			e.preventDefault();
+			btn.disabled = true;
+			say("Sending…", "");
+			fetch(form.action, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } })
+				.then(function (r) {
+					if (!r.ok) throw new Error();
+					form.reset();
+					say("Sent. I'll reply soon.", "is-ok");
+				})
+				.catch(function () { say("Couldn't send. Email me directly below.", "is-err"); })
+				.then(function () { btn.disabled = false; });
+		});
+	});
+
 	/* ---------- Copy email ---------- */
 	document.querySelectorAll("[data-copy]").forEach(function (btn) {
 		var label = btn.querySelector("span");

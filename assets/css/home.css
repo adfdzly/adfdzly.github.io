@@ -101,6 +101,18 @@ main, .foot2 { position: relative; z-index: 1; }
 @media (min-width: 900px) { .also__l.also li > * { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr) minmax(0, 6fr) 70px; } }
 
 /* Contact */
+.form3 { display: grid; grid-template-columns: 1fr 1fr; gap: 26px 28px; max-width: 520px; margin-top: 36px; }
+.form3__f { display: grid; gap: 8px; }
+.form3__f--wide, .form3__end { grid-column: 1 / -1; }
+.form3 input, .form3 textarea {
+	width: 100%; padding: 8px 0 10px; border: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.16); border-radius: 0; background: none;
+	font: 400 17px/1.5 var(--sans); color: var(--silver); resize: vertical; transition: border-color 0.2s;
+}
+.form3 input:focus, .form3 textarea:focus { outline: none; border-bottom-color: var(--ice); }
+.form3__end { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+.form3__msg.is-ok { color: var(--ice); }
+.form3__msg.is-err { color: #ff9d9d; }
+@media (max-width: 599px) { .form3 { grid-template-columns: 1fr; } }
 .mail3 { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 30px; }
 .pill--lg { min-height: 52px; padding: 0 24px; font-size: 16px; }
 .contact3__soc { display: flex; gap: 8px 26px; flex-wrap: wrap; margin-top: 26px; }
