@@ -50,10 +50,8 @@ main, .foot2 { position: relative; z-index: 1; }
 .hero { min-height: 100svh; }
 .hero__h { max-width: 10em; font-size: clamp(44px, 6.4vw, 92px); }
 .hero__cta { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 30px; }
-.hero__status { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 28px; }
-.hero__status span { display: inline-flex; align-items: center; gap: 8px; }
-.hero__status span::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: #5ee39a; box-shadow: 0 0 8px #5ee39a; }
-.hero__status span + span::before { background: var(--steel); box-shadow: none; }
+.hero__status { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 28px; }
+.hero__status span + span::before { content: "/"; margin-right: 14px; opacity: 0.5; }
 .hero__hint { position: absolute; left: 50%; bottom: 28px; transform: translateX(-50%); white-space: nowrap; }
 @media (max-width: 899px) {
 	.hero { padding-top: 46svh; }
