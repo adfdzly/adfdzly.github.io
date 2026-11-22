@@ -233,7 +233,17 @@
 			<div class="sec__in">
 				<p class="eyebrow">Contact</p>
 				<h2 class="h h--xl" id="t-contact">Have something <em>to build?</em></h2>
-				<p class="sub">Email is the fastest way to reach me. Malay or English.</p>
+				<p class="sub">Leave a message here or email me directly. Malay or English.</p>
+				<form class="form3" action="https://formspree.io/f/xbdeoyrk" method="POST" data-form>
+					<label class="form3__f"><span class="k">Name</span><input name="name" type="text" autocomplete="name" required /></label>
+					<label class="form3__f"><span class="k">Email</span><input name="email" type="email" autocomplete="email" required /></label>
+					<label class="form3__f form3__f--wide"><span class="k">Message</span><textarea name="message" rows="4" required></textarea></label>
+					<input class="sr-only" name="_gotcha" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" />
+					<div class="form3__end">
+						<button class="pill pill--solid pill--lg" type="submit">Send message →</button>
+						<p class="form3__msg k" role="status" aria-live="polite"></p>
+					</div>
+				</form>
 				<div class="mail3">
 					<a class="pill pill--solid pill--lg" href="mailto:mafadzly@gmail.com" data-cursor="Write ↗">mafadzly@gmail.com</a>
 					<button class="pill pill--lg" type="button" data-copy="mafadzly@gmail.com" aria-describedby="copy-status"><span>Copy</span></button>
